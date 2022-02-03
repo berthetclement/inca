@@ -1,0 +1,261 @@
+
+#-------------------------------------------------------#
+#                                                       #
+#    01-00-Definitions_parametres_globaux.r             #
+#                                                       #
+#                                                       #
+#                                                       #
+#                                                       #
+#                                                       #
+#-------------------------------------------------------#
+
+
+
+# LIBRAIRIES ----
+library(rentrez)
+library(XML)
+library(xml2)
+library(data.table)
+library(dplyr)
+library(tidyr)
+# library(glue)
+library(stringr)
+
+
+# LIBRAIRIES POSTGRES----
+library("odbc")
+library("DBI")
+library("RPostgreSQL")
+
+
+##
+# GLOBAL PATH ----
+##
+
+# chemin LOG ----
+chemin_log <- "Prod/Log/"
+
+# chemin fonctions ----
+chemin_fonctions <- "Prod/Fonctions/"
+
+# pour chargement des fonctions en memoire
+file_sources = list.files(pattern="*\\.R", path = chemin_fonctions, full.names = TRUE)
+
+#  chemin OUTPUT  ----
+chemin_output <- "Prod/Output/"
+
+# chemin temps traitement ----
+chemin_tps_traitment <- paste0(chemin_output, "temps_traitement/")
+
+# chemin INPUT ----
+chemin_input <- "Prod/Input/"
+
+#  chemin scripts ----
+chemin_script <- "Prod/Script/"
+
+# chemin refs comptage balises ----
+chemin_output_ref_comptage <- paste0(chemin_output, "ref_comptage/")
+
+#-------------------------------------------------------#
+#                                                       #
+#                    PUBMED                             #
+#                                                       #
+#-------------------------------------------------------#
+
+# PUBMED ----
+
+# chemin output export RDS ----
+chemin_pubmed_rds <- paste0(chemin_output, "pubmed_rds/")
+
+#  03-definition_fonction_fetchAPI ----
+  # nombre de publications xml par fichier en sortie (le pas)
+step_by_id = 999# 999
+
+  # index positions pour les id
+start_index_id = 1
+stop_index_id =  114000 ## ne pas mettre de paramètre de nombre max de fichier à récupérer
+
+
+#  05-definition_fonction_test_id_fetch ----
+nom_fichier_suivi_id <- "Suivi_id_PUBMED.csv"
+
+#  07-definition_foctions_check_xml ----
+nom_fichier_suivi_nct <- "Suivi_id_PUBMED_NCT.csv"
+
+
+#-------------------------------------------------------#
+#                                                       #
+#                    BALISES                            #
+#                                                       #
+#-------------------------------------------------------#
+
+# BALISES ----
+
+chemin_fonctions_balises <-  paste0(chemin_fonctions, "balises/")
+
+# pour chargement des fonctions en memoire
+fonctions_source_balises = list.files(pattern="*\\.R", path = chemin_fonctions_balises, full.names = TRUE)
+
+# chemin output balises RDS
+chemin_output_balises <- paste0(chemin_output, "balises_rds/")
+
+## on definit le taux de présence pour que la balise soient significatives
+tx_balise_NS <- 0.001
+
+## on définit la liste des balises erronnées
+liste_balises_erronnees <- c("b","i","sub","sup","u","math","mi","mn","mo","mrow","msub","mspace","mtext")
+
+##
+# DECOUPAGE FICHIER XML
+##
+
+# Nombre d'enfants par fichier
+BLOCK_SIZE <- 1000
+#-------------------------------------------------------#
+#                                                       #
+#                    MESH                               #
+#                                                       #
+#-------------------------------------------------------#
+
+# MESH ----
+# fichiers mesh test 
+nom_fic_mesh <- "desc2022.xml"
+
+# chemin ouptut des fichiers xml splité 
+chemin_input_xml_Mesh_split <- paste0(chemin_input,"/XML_Mesh_Splitted/")
+
+# chemin output des RDS ----
+chemin_output_Mesh_rds <- paste0(chemin_output, "mesh_rds/")
+
+# prefix des fichiers RDS
+nom_fich_Mesh_rds <- "mesh_lot_"
+
+# éléments pour identifier l'identifiant du Mesh
+  parent_id_Mesh <- "DescriptorRecord"
+  bal_id_Mesh <- "DescriptorUI"
+  name_id_Mesh <- "id_mesh"
+
+
+#-------------------------------------------------------#
+#                                                       #
+#                    SUPP                               #
+#                                                       #
+#-------------------------------------------------------#
+
+
+# fichiers supp test 
+nom_fic_Supp <- "supp2022.xml"
+
+# chemin ouptut des fichiers xml splité 
+chemin_input_xml_Supp_split <- paste0(chemin_input,"XML_Supp_Splitted/")
+
+# chemin output des RDS ----
+chemin_output_Supp_rds <- paste0(chemin_output, "supp_rds/")
+
+# prefix des fichiers RDS
+nom_fich_Supp_rds <- "supp_lot_"
+
+# éléments pour identifier l'identifiant du Supp
+parent_id_Supp <- "SupplementalRecord"
+bal_id_Supp <- "SupplementalRecordUI"
+name_id_Supp <- "id_supp"
+  
+
+#-------------------------------------------------------#
+#                                                       #
+#                    PA                                 #
+#                                                       #
+#-------------------------------------------------------#
+
+
+# fichiers supp test 
+nom_fic_Pa <- "pa2022.xml"
+
+# chemin ouptut des fichiers xml splité 
+chemin_input_xml_Pa_split <- paste0(chemin_input,"XML_Pa_Splitted/")
+
+# chemin output des RDS ----
+chemin_output_Pa_rds <- paste0(chemin_output, "pa_rds/")
+
+# prefix des fichiers RDS
+nom_fich_Pa_rds <- "pa_lot_"
+
+# éléments pour identifier l'identifiant du Pa
+parent_id_Pa <- "DescriptorReferredTo"
+bal_id_Pa <- "DescriptorUI"
+name_id_Pa <- "id_pa"
+  
+
+#-------------------------------------------------------#
+#                                                       #
+#                    QUAL                               #
+#                                                       #
+#-------------------------------------------------------#
+
+
+# fichiers supp test 
+nom_fic_Qual <- "qual2022.xml"
+
+# chemin ouptut des fichiers xml splité 
+chemin_input_xml_Qual_split <- paste0(chemin_input,"XML_Qual_Splitted/")
+
+# chemin output des RDS ----
+chemin_output_Qual_rds <- paste0(chemin_output, "Qual_rds/")
+
+# prefix des fichiers RDS
+nom_fich_Qual_rds <- "qual_lot_"
+
+# éléments pour identifier l'identifiant du Qual
+parent_id_Qual <- "QualifierRecord"
+bal_id_Qual <- "QualifierUI"
+name_id_Qual <- "id_qual"
+
+
+
+#-------------------------------------------------------#
+#                                                       #
+#                    MESH TREES                         #
+#                                                       #
+#-------------------------------------------------------#
+
+# MESH TREES ----
+nom_fichier_mesh_trees <- "mtrees2022.bin"
+
+# chemin output mesh trees ----
+chemin_output_trees <- paste0(chemin_output, "mesh_trees/")
+
+
+
+DIR_INPUT_DATA = "./Prod/Input/"
+DIR_OUTPUT = "./Prod/Output/"
+#DIR_OUTPUT_SUIVI = paste0(DIR_OUTPUT,"suivi/")
+DIR_OUTPUT_SUIVI = DIR_OUTPUT
+
+# SUPP
+DIR_INPUT_XML_SUPP = paste0(DIR_INPUT_DATA, "XML_Supp_Splitted/")
+NOM_BALISE_ID_SUPP = "SupplementalRecordUI"
+NOM_PARENT_ID_SUPP = "SupplementalRecord"
+DIR_OUTPUT_RDS_SUPP = paste0(DIR_OUTPUT, "supp_rds/")
+FILE_SUIVI_SUPP = "suivi_supp.csv"
+
+# DESC
+DIR_INPUT_XML_DESC = paste0(DIR_INPUT_DATA, "XML_Desc_Splitted/")
+NOM_BALISE_ID_DESC = "DescriptorUI"
+NOM_PARENT_ID_DESC = "DescriptorRecord"
+DIR_OUTPUT_RDS_DESC = paste0(DIR_OUTPUT, "desc_rds/")
+FILE_SUIVI_DESC = "suivi_desc.csv"
+
+# QUAL
+DIR_INPUT_XML_QUAL = paste0(DIR_INPUT_DATA, "XML_Qual_Splitted/")
+NOM_BALISE_ID_QUAL = "QualifierUI"
+NOM_PARENT_ID_QUAL = "QualifierRecord"
+DIR_OUTPUT_RDS_QUAL = paste0(DIR_OUTPUT, "qual_rds/")
+FILE_SUIVI_QUAL = "suivi_qual.csv"
+
+# PA
+DIR_INPUT_XML_PA = paste0(DIR_INPUT_DATA, "XML_Pa_Splitted/")
+NOM_BALISE_ID_PA = "DescriptorUI"
+NOM_PARENT_ID_PA = "DescriptorReferredTo"
+DIR_OUTPUT_RDS_PA = paste0(DIR_OUTPUT, "pa_rds/")
+FILE_SUIVI_PA = "suivi_pa.csv"
+

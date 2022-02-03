@@ -1,0 +1,22 @@
+"Package";"Version";"Suggests";"Depends";"Imports"
+"data.table";"1.13.0";"bit64, curl, R.utils, xts, nanotime, zoo, yaml, knitr,
+rmarkdown";"R (>= 3.1.0)";"methods"
+"DBI";"1.1.0";"blob, covr, hms, knitr, magrittr, rmarkdown, rprojroot,
+RSQLite (>= 1.1-2), testthat, xml2";"methods, R (>= 3.0.0)";NA
+"dplyr";"1.0.1";"bench, broom, callr, covr, DBI, dbplyr (>= 1.4.3), knitr,
+Lahman, lobstr, microbenchmark, nycflights13, purrr, rmarkdown,
+RMySQL, RPostgreSQL, RSQLite, testthat (>= 2.1.0), withr";"R (>= 3.2.0)";"ellipsis, generics, glue (>= 1.3.2), lifecycle (>= 0.2.0),
+magrittr (>= 1.5), methods, R6, rlang (>= 0.4.7), tibble (>=
+2.1.3), tidyselect (>= 1.1.0), utils, vctrs (>= 0.3.2)"
+"odbc";"1.3.3";"covr, DBItest, magrittr, RSQLite, testthat, tibble";"R (>= 3.2.0)";"bit64, blob (>= 1.2.0), DBI (>= 1.0.0), hms, methods, rlang,
+Rcpp (>= 0.12.11)"
+"rentrez";"1.2.3";"testthat, knitr, rmarkdown";"R (>= 2.6.0)";"XML, httr (>= 0.5), jsonlite (>= 0.9)"
+"RPostgreSQL";"0.7-3";NA;"R (>= 2.9.0), methods, DBI (>= 0.3)";NA
+"stringr";"1.4.0";"covr, htmltools, htmlwidgets, knitr, rmarkdown, testthat";"R (>= 3.1)";"glue (>= 1.2.0), magrittr, stringi (>= 1.1.7)"
+"tidyr";"1.1.1";"covr, jsonlite, knitr, repurrrsive (>= 1.0.0), rmarkdown,
+readr, testthat (>= 2.1.0)";"R (>= 3.1)";"dplyr (>= 0.8.2), ellipsis (>= 0.1.0), glue, magrittr, purrr,
+rlang, tibble (>= 2.1.1), tidyselect (>= 1.1.0), utils, vctrs
+(>= 0.3.0), lifecycle"
+"XML";"3.99-0.8";"bitops, RCurl";"R (>= 4.0.0), methods, utils";NA
+"xml2";"1.3.2";"covr, curl, httr, knitr, magrittr, mockery, rmarkdown,
+testthat (>= 2.1.0)";"R (>= 3.1.0)";"methods"

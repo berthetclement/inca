@@ -1,0 +1,166 @@
+[1] "Programme: 02-Traitements_fichiers_XML_MESH"
+[1] "Heure lancement: "
+[1] "2022-02-02 08:52:29"
+[1] "Suppression des fichiers dans le répertoire :  ./Prod/Input/XML_Desc_Splitted/"
+[1] "Suppression des fichiers dans le répertoire :  ./Prod/Output/desc_rds/"
+[1] "Création des fichiers xml splittés"
+[1] "Lecture des données"
+[1] "Calcul de la balise header et de la balise footer"
+[1] "Génération des paires"
+[1] "31 fichiers à générer"
+[1] "Split des données et écriture dans un .xml spécifique"
+[1] "Fichier : 1"
+[1] "Fichier : 2"
+[1] "Fichier : 3"
+[1] "Fichier : 4"
+[1] "Fichier : 5"
+[1] "Fichier : 6"
+[1] "Fichier : 7"
+[1] "Fichier : 8"
+[1] "Fichier : 9"
+[1] "Fichier : 10"
+[1] "Fichier : 11"
+[1] "Fichier : 12"
+[1] "Fichier : 13"
+[1] "Fichier : 14"
+[1] "Fichier : 15"
+[1] "Fichier : 16"
+[1] "Fichier : 17"
+[1] "Fichier : 18"
+[1] "Fichier : 19"
+[1] "Fichier : 20"
+[1] "Fichier : 21"
+[1] "Fichier : 22"
+[1] "Fichier : 23"
+[1] "Fichier : 24"
+[1] "Fichier : 25"
+[1] "Fichier : 26"
+[1] "Fichier : 27"
+[1] "Fichier : 28"
+[1] "Fichier : 29"
+[1] "Fichier : 30"
+[1] "Fichier : 31"
+[1] "Traitement de : split_part_1.xml"
+[1] "Traitement de : split_part_10.xml"
+[1] "Traitement de : split_part_11.xml"
+[1] "Traitement de : split_part_12.xml"
+[1] "Traitement de : split_part_13.xml"
+[1] "Traitement de : split_part_14.xml"
+[1] "Traitement de : split_part_15.xml"
+[1] "Traitement de : split_part_16.xml"
+[1] "Traitement de : split_part_17.xml"
+[1] "Traitement de : split_part_18.xml"
+[1] "Traitement de : split_part_19.xml"
+[1] "Traitement de : split_part_2.xml"
+[1] "Traitement de : split_part_20.xml"
+[1] "Traitement de : split_part_21.xml"
+[1] "Traitement de : split_part_22.xml"
+[1] "Traitement de : split_part_23.xml"
+[1] "Traitement de : split_part_24.xml"
+[1] "Traitement de : split_part_25.xml"
+[1] "Traitement de : split_part_26.xml"
+[1] "Traitement de : split_part_27.xml"
+[1] "Traitement de : split_part_28.xml"
+[1] "Traitement de : split_part_29.xml"
+[1] "Traitement de : split_part_3.xml"
+[1] "Traitement de : split_part_30.xml"
+[1] "Traitement de : split_part_31.xml"
+[1] "Traitement de : split_part_4.xml"
+[1] "Traitement de : split_part_5.xml"
+[1] "Traitement de : split_part_6.xml"
+[1] "Traitement de : split_part_7.xml"
+[1] "Traitement de : split_part_8.xml"
+[1] "Traitement de : split_part_9.xml"
+[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL
+
+[[4]]
+NULL
+
+[[5]]
+NULL
+
+[[6]]
+NULL
+
+[[7]]
+NULL
+
+[[8]]
+NULL
+
+[[9]]
+NULL
+
+[[10]]
+NULL
+
+[[11]]
+NULL
+
+[[12]]
+NULL
+
+[[13]]
+NULL
+
+[[14]]
+NULL
+
+[[15]]
+NULL
+
+[[16]]
+NULL
+
+[[17]]
+NULL
+
+[[18]]
+NULL
+
+[[19]]
+NULL
+
+[[20]]
+NULL
+
+[[21]]
+NULL
+
+[[22]]
+NULL
+
+[[23]]
+NULL
+
+[[24]]
+NULL
+
+[[25]]
+NULL
+
+[[26]]
+NULL
+
+[[27]]
+NULL
+
+[[28]]
+NULL
+
+[[29]]
+NULL
+
+[[30]]
+NULL
+
+[[31]]
+NULL
+

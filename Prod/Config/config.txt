@@ -1,0 +1,2 @@
+conn;port;user;password;dbname
+virt-db-hygie;5433;INC_U_PRI_A;GhTHINE2TIVA;INC
