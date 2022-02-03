@@ -44,7 +44,7 @@ split_rds <- function(obj_rds, simple_table= FALSE, name_id, referentiel){
       select(names(obj_rds))
     
     # gestion des dates
-    fic_rds_simples <- balises_simples_dates(fic_rds_simples, var_id)
+    fic_rds_simples <- balises_simples_dates(fic_rds_simples, var_id, ref= referentiel)
     
     # gestion tag balises erronees
     list_id_balises_err <- obj_rds %>%
@@ -54,7 +54,7 @@ split_rds <- function(obj_rds, simple_table= FALSE, name_id, referentiel){
     
     # tag + suppression des balises + suprr colone "Attribut"
     fic_rds_simples <- fic_rds_simples %>% 
-      mutate(balises_error= ifelse(!!var_id %in% list_id_balises_err, TRUE, FALSE)) %>% 
+      mutate(balises_error= ifelse(!!var_id %in% list_id_balises_err, "oui", "non")) %>% 
       select(-Attribut)
     
     # tabulation de la table simple

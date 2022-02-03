@@ -9,7 +9,7 @@
 #-------------------------------------------------------#
 
 
-balises_simples_dates <- function(df_table_simple, name_id){
+balises_simples_dates <- function(df_table_simple, name_id, ref){
   var_id <- sym(name_id)
   
   # gestion des dates

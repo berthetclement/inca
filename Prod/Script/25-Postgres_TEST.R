@@ -8,6 +8,15 @@
 #                                                       #
 #-------------------------------------------------------#
 
+
+# generer tables simples / multples
+balisage_RDS(referentiel = read.csv2("Prod/Output/ref_comptage/cpt_balises_pubmed.csv"), 
+             name_id = "id_pubmed", 
+             repertoire_in = "save_RDS/", 
+             repertoire_out = "Prod/Output/balises_rds/")   
+
+
+
 #### 00 Definition des paramètres ----
 
 chemin_configuration <- "Prod/Config/"
@@ -31,12 +40,7 @@ Creation_Schema_NCT_Tampon <- " CREATE SCHEMA IF NOT EXISTS \"pubmed_tmp\"
 # Création sur le serveur des deux tables à alimenter, vides (nécessaires pour que l'alimentation dbWriteTable qui va suivre se fasse avec append=TRUE et puisse donc reprendre, par exemple, à n=414e groupe )
 
 ## TABLES SIMPLES ----
-  # prendre rds pour modele
-balisage_RDS(referentiel = read.csv2("Prod/Output/ref_comptage/cpt_balises_pubmed.csv"), 
-             name_id = "id_pubmed", 
-             repertoire_in = "Prod/Output/pubmed_rds/", 
-             repertoire_out = "./")   
-
+  
 # prendre un RDS comme modele
 tab_simples_model <- readRDS("lot_20220127140733_simple.RDS")
 
