@@ -37,10 +37,12 @@ balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out){
       old_name <- tools::file_path_sans_ext(ls_fic[i_file])
       
         # save simple
-      saveRDS(fic_rds_simples, paste0(repertoire_out, old_name, "_simple",".RDS"))
+      #saveRDS(fic_rds_simples, paste0(repertoire_out, old_name, "_simple",".RDS"))
+      pstgr_write_table(nom_schema = "pubmed_tmp", nom_table = "pubmed", data_rds = fic_rds_simples)
       
         # save multiple
-      saveRDS(fic_rds_multiples, paste0(repertoire_out, old_name, "_multiple", ".RDS"))
+      # saveRDS(fic_rds_multiples, paste0(repertoire_out, old_name, "_multiple", ".RDS"))
+      pstgr_write_table(nom_schema = "pubmed_tmp", nom_table = "pubmed_mult", data_rds = fic_rds_multiples)
       
     }
     

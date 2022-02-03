@@ -79,6 +79,9 @@ sapply(fonctions_source_balises, source)
                      nom_output = "cpt_balises_pubmed")
   # 3.4 on separe les données et on les remonte sous PostGre
     
+    # lecture referentiel valide en INPUT
+    ref_balises <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_pubmed.csv'))
+    
     ## creation du schema temp + structure de la table
     
     # parametres de connexion
@@ -87,7 +90,7 @@ sapply(fonctions_source_balises, source)
     drv_generic <- dbDriver("PostgreSQL")
     con <- dbConnect(drv_generic, config$conn, port=config$port, user=config$user, password=config$password, dbname=config$dbname)
     
-    ## INIT du schema 
+    ## 1 - INIT du schema 
     # requete
     Creation_Schema_NCT_Tampon <- " CREATE SCHEMA IF NOT EXISTS \"pubmed_tmp\" 
                                   AUTHORIZATION \"INC_U_PRI_A\" ;
@@ -97,11 +100,13 @@ sapply(fonctions_source_balises, source)
     # execution
     dbGetQuery(con, Creation_Schema_NCT_Tampon)
     
-    ## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
-    ## simple et mult pour DESC
+    ## 2 - Creation tables vides 
+      # simple / multiple a partir du referentiel 
+    pstgr_write_table_vide(ref_comptage = ref_balises)
     
-    # lecture referentiel valide en INPUT
-    ref_balises <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_pubmed.csv'))
+    ## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
+    
+    
     
     ## Traitements des fichiers RDS ----
     balisage_RDS(referentiel = ref_balises, 
