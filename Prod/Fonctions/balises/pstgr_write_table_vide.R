@@ -75,6 +75,9 @@ pstgr_write_table_vide <- function(ref_comptage){
     character(), 0, nb_col, dimnames=list(c(), list_nom_variables_mult)),
     stringsAsFactors=F)
   
+  # noms en minuscule
+  names(df_mult) <- tolower(names(df_mult))
+  
   # Ecriture requetes
   requete_des_droits <- 'GRANT SELECT ON TABLE "pubmed_tmp"."pubmed_mult" TO "INC_U_PRI";'
   requete_creation_index <- "CREATE INDEX IF NOT EXISTS \"cle_id_pubmed_mult\" ON \"pubmed_tmp\".\"pubmed_mult\" (\"id_pubmed\",\"chemin\") ;"
@@ -82,7 +85,7 @@ pstgr_write_table_vide <- function(ref_comptage){
   requete_cle_primaire <- "ALTER TABLE \"pubmed_tmp\".\"pubmed_mult\" ADD CONSTRAINT pk_pubmed_mult PRIMARY KEY (\"id_pubmed\",\"chemin\");"
   
   # Execution requetes
-  dbWriteTable(con, name=c("pubmed_tmp","pubmed_mult"), overwrite=TRUE, value = tableau_NCT_Mult_vide,row.names=FALSE)
+  dbWriteTable(con, name=c("pubmed_tmp","pubmed_mult"), overwrite=TRUE, value = df_mult, row.names=FALSE)
   
   dbGetQuery(con, requete_des_droits)
   dbGetQuery(con, requete_creation_index)

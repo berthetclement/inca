@@ -107,12 +107,11 @@ sapply(fonctions_source_balises, source)
     ## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
     
     
-    
     ## Traitements des fichiers RDS ----
     balisage_RDS(referentiel = ref_balises, 
                  name_id = "id_pubmed",
-                 repertoire_in = "Prod/Output/pubmed_rds/", 
-                 repertoire_out = chemin_output_balises)
+                 repertoire_in = "save_RDS/", # "Prod/Output/pubmed_rds/"
+                 repertoire_out = chemin_output_balises) 
 
 
 

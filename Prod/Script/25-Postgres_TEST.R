@@ -58,6 +58,8 @@ tableau_NCT_vide <- tab_simples_model %>%
 
 names(tableau_NCT_vide) <- tolower(names(tableau_NCT_vide))
 
+tableau_NCT_vide$articledate <- as.Date(tableau_NCT_vide$articledate)
+
 # for(i in seq(1, ncol(tableau_NCT_vide))) {
 #   tableau_NCT_vide[,i] <- as.character(tableau_NCT_vide[,i])
 # }
