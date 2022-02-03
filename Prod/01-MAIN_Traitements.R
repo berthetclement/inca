@@ -77,7 +77,28 @@ sapply(fonctions_source_balises, source)
     comptage_balise (nom_chemin = chemin_pubmed_rds,
                      id_fic =  "id_pubmed",
                      nom_output = "cpt_balises_pubmed")
-  # 3.4 on sépare les données et on les remonte sous PostGre
+  # 3.4 on separe les données et on les remonte sous PostGre
+    
+    ## creation du schema temp + structure de la table
+    
+    # parametres de connexion
+    chemin_configuration <- "Prod/Config/"
+    config <- read.table(file = paste0(chemin_configuration,"config.txt"), sep = ";", header = TRUE, stringsAsFactors = FALSE)
+    drv_generic <- dbDriver("PostgreSQL")
+    con <- dbConnect(drv_generic, config$conn, port=config$port, user=config$user, password=config$password, dbname=config$dbname)
+    
+    ## INIT du schema 
+    # requete
+    Creation_Schema_NCT_Tampon <- " CREATE SCHEMA IF NOT EXISTS \"pubmed_tmp\" 
+                                  AUTHORIZATION \"INC_U_PRI_A\" ;
+                                  GRANT USAGE ON SCHEMA \"pubmed_tmp\" TO \"INC_U_PRI\" ;
+                                  GRANT ALL ON SCHEMA \"pubmed_tmp\" TO \"INC_U_DSI\" ;"
+    
+    # execution
+    dbGetQuery(con, Creation_Schema_NCT_Tampon)
+    
+    ## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
+    ## simple et mult pour DESC
     
     # lecture referentiel valide en INPUT
     ref_balises <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_pubmed.csv'))
