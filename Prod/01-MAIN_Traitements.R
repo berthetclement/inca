@@ -103,8 +103,10 @@ sapply(fonctions_source_balises, source)
     ## Traitements des fichiers RDS ----
     balisage_RDS(referentiel = ref_balises, 
                  name_id = "id_pubmed",
-                 repertoire_in = "save_RDS/", # [TEST] "Prod/Output/pubmed_rds/"
-                 repertoire_out = chemin_output_balises) # parametre deprecie
+                 repertoire_in = "Prod/Output/pubmed_rds/", # [TEST] "save_RDS/"
+                 repertoire_out = chemin_output_balises, # parametre deprecie
+                 nom_schema = "pubmed_tmp", 
+                 nom_table = "pubmed") 
 
 
 
@@ -162,7 +164,9 @@ pstgr_write_table_desc_vide(ref_comptage = ref_balises_desc, nom_schema = "pubme
 balisage_RDS(referentiel = ref_balises_desc, 
              name_id = "id_desc", 
              repertoire_in = DIR_OUTPUT_RDS_DESC, 
-             repertoire_out = "Prod/Output/balises_rds/desc/")
+             repertoire_out = "Prod/Output/balises_rds/desc/",
+             nom_schema = "pubmed_tmp", 
+             nom_table = "desc")
 
 
     #-------------------------------------------------------#
@@ -201,12 +205,22 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_SUPP, id_fic = "id_supp", nom_outpu
 
 # lecture referentiel valide en INPUT
 ref_balises_Supp <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_Supp.csv'))
+
+## 1 - INIT du schema 
+pstgr_init_schema("pubmed_tmp")
+
+## 2 - Creation tables vides 
+# simple / multiple a partir du referentiel 
+pstgr_write_table_supp_vide(ref_comptage = ref_balises_Supp, nom_schema = "pubmed_tmp", nom_table = "supp")
+
     
 ## Traitements des fichiers RDS ----
 balisage_RDS(referentiel = ref_balises_Supp, 
              name_id = "id_supp", 
              repertoire_in = DIR_OUTPUT_RDS_SUPP, 
-             repertoire_out = "Prod/Output/balises_rds/supp/")    
+             repertoire_out = "Prod/Output/balises_rds/supp/",
+             nom_schema = "pubmed_tmp", 
+             nom_table = "supp")    
     
     
 
@@ -252,12 +266,23 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_PA,
 # lecture referentiel valide en INPUT
 ref_balises_Pa <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_Pa.csv'))
 
+## 1 - INIT du schema 
+pstgr_init_schema("pubmed_tmp")
+
+## 2 - Creation tables vides 
+# simple / multiple a partir du referentiel 
+pstgr_write_table_pa_vide(ref_comptage = ref_balises_Pa, nom_schema = "pubmed_tmp", nom_table = "pa")
+
+
 ## Traitements des fichiers RDS ----
 balisage_RDS(referentiel = ref_balises_Pa, 
              name_id = "id_pa", 
              repertoire_in = DIR_OUTPUT_RDS_PA, 
-             repertoire_out = "Prod/Output/balises_rds/Pa/")        
-    
+             repertoire_out = "Prod/Output/balises_rds/Pa/",
+             nom_schema = "pubmed_tmp", 
+             nom_table = "pa")    
+
+
 
     
     #-------------------------------------------------------#
@@ -299,15 +324,23 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_QUAL, id_fic = "id_qual", nom_outpu
 # lecture referentiel valide en INPUT
 ref_balises_Qual <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_qual.csv'))
 
+## 1 - INIT du schema 
+pstgr_init_schema("pubmed_tmp")
+
+## 2 - Creation tables vides 
+# simple / multiple a partir du referentiel 
+pstgr_write_table_qual_vide(ref_comptage = ref_balises_Qual, nom_schema = "pubmed_tmp", nom_table = "qual")
 
 
 ## Traitements des fichiers RDS ----
 balisage_RDS(referentiel = ref_balises_Qual, 
              name_id = "id_qual", 
              repertoire_in = DIR_OUTPUT_RDS_QUAL, 
-             repertoire_out = "Prod/Output/balises_rds/qual/")      
-                
+             repertoire_out = "Prod/Output/balises_rds/qual/",
+             nom_schema = "pubmed_tmp", 
+             nom_table = "qual")  
 
+     
 #-------------------------------------------------------#
 #                                                       #
 #              BLOC : MESH TREES                        #

@@ -9,7 +9,7 @@
 #-------------------------------------------------------#
 
 
-balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out){
+balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out, nom_schema, nom_table){
 # test si RDS en output
   ls_fic <- list.files(repertoire_in, pattern = "*.RDS")
   if(length(ls_fic)>0){
@@ -38,11 +38,12 @@ balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out){
       
         # save simple
       #saveRDS(fic_rds_simples, paste0(repertoire_out, old_name, "_simple",".RDS"))
-      pstgr_write_table(nom_schema = "pubmed_tmp", nom_table = "pubmed", data_rds = fic_rds_simples)
+      pstgr_write_table(nom_schema = nom_schema, nom_table = nom_table, data_rds = fic_rds_simples)
       
         # save multiple
       # saveRDS(fic_rds_multiples, paste0(repertoire_out, old_name, "_multiple", ".RDS"))
-      pstgr_write_table(nom_schema = "pubmed_tmp", nom_table = "pubmed_mult", data_rds = fic_rds_multiples)
+      nom_table_mult <- paste0(nom_table,"_mult")
+      pstgr_write_table(nom_schema = nom_schema, nom_table = nom_table_mult, data_rds = fic_rds_multiples)
       
     }
     

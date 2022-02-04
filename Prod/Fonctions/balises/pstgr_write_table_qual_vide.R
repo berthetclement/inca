@@ -1,6 +1,6 @@
 #-------------------------------------------------------#
 #                                                       #
-#     pstgr_write_table_desc_vide.R                     #
+#     pstgr_write_table_qual_vide.R                     #
 #                                                       #
 #                                                       #
 #                                                       #
@@ -8,7 +8,7 @@
 #                                                       #
 #-------------------------------------------------------#
 
-pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
+pstgr_write_table_qual_vide <- function(ref_comptage, nom_schema, nom_table){
   
   ###
   ## tables simples
@@ -27,7 +27,7 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
     unique
   
   # noms de colonnes post traitements 
-  list_nom_variables_simples_traite <- c("id_desc", "balises_error")
+  list_nom_variables_simples_traite <- c("id_qual", "balises_error")
   
   # structure du data frame
   list_nom_variables_simples <- c(list_nom_variables_simples_traite, 
@@ -60,7 +60,7 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
                               nom_table, 
                               "\"",
                               ' TO "INC_U_PRI";')
-  requete_creation_index <- paste0("CREATE INDEX IF NOT EXISTS \"cle_id_desc\" ON ",
+  requete_creation_index <- paste0("CREATE INDEX IF NOT EXISTS \"cle_id_qual\" ON ",
                                    "\"",
                                    nom_schema,
                                    "\"",
@@ -68,7 +68,7 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
                                    "\"",
                                    nom_table,
                                    "\"",
-                                   "(\"id_desc\") ;")
+                                   "(\"id_qual\") ;")
   requete_cle_primaire <- paste0("ALTER TABLE ",
                                  "\"",
                                  nom_schema,
@@ -77,7 +77,7 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
                                  "\"",
                                  nom_table,
                                  "\"",
-                                 "ADD CONSTRAINT pk_id_desc PRIMARY KEY (\"id_desc\");")
+                                 "ADD CONSTRAINT pk_id_qual PRIMARY KEY (\"id_qual\");")
   
   # Execution des requetes
   dbWriteTable(con, name=c(nom_schema, nom_table), value = df, overwrite = TRUE, row.names=FALSE)
@@ -90,7 +90,7 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
   ## tables multiples
   ###
   # structure du data frame
-  list_nom_variables_mult <- c("id_desc", "Nom_balise", "Parent", "Chemin", "Profondeur", "Valeur", "Attribut" )
+  list_nom_variables_mult <- c("id_qual", "Nom_balise", "Parent", "Chemin", "Profondeur", "Valeur", "Attribut" )
   
   # data frame vide
   nb_col <- length(list_nom_variables_mult)
@@ -112,7 +112,7 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
                                nom_table,
                                "\"",
                                ' TO "INC_U_PRI";')
-  requete_creation_index <- paste0("CREATE INDEX IF NOT EXISTS \"cle_id_desc_mult\" ON ",
+  requete_creation_index <- paste0("CREATE INDEX IF NOT EXISTS \"cle_id_qual_mult\" ON ",
                                    "\"",
                                    nom_schema,
                                    "\"",
@@ -120,8 +120,8 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
                                    "\"",
                                    nom_table,
                                    "\"",
-                                   " (\"id_desc\",\"chemin\") ;")
-  requete_creation_index_bis <- paste0("CREATE INDEX IF NOT EXISTS \"cle_id_desc_mult_id\" ON ",
+                                   " (\"id_qual\",\"chemin\") ;")
+  requete_creation_index_bis <- paste0("CREATE INDEX IF NOT EXISTS \"cle_id_qual_mult_id\" ON ",
                                        "\"",
                                        nom_schema,
                                        "\"",
@@ -129,7 +129,7 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
                                        "\"",
                                        nom_table,
                                        "\"",
-                                       " (\"id_desc\") ;")
+                                       " (\"id_qual\") ;")
   requete_cle_primaire <- paste0("ALTER TABLE ",
                                  "\"",
                                  nom_schema,
@@ -138,7 +138,7 @@ pstgr_write_table_desc_vide <- function(ref_comptage, nom_schema, nom_table){
                                  "\"",
                                  nom_table,
                                  "\"",
-                                 " ADD CONSTRAINT pk_desc_mult PRIMARY KEY (\"id_desc\",\"chemin\");")
+                                 " ADD CONSTRAINT pk_qual_mult PRIMARY KEY (\"id_qual\",\"chemin\");")
   
   # Execution requetes
   dbWriteTable(con, name=c(nom_schema, nom_table), overwrite=TRUE, value = df_mult, row.names=FALSE)
