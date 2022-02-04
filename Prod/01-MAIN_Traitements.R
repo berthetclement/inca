@@ -91,18 +91,19 @@ sapply(fonctions_source_balises, source)
     con <- dbConnect(drv_generic, config$conn, port=config$port, user=config$user, password=config$password, dbname=config$dbname)
     
     ## 1 - INIT du schema 
-    # requete
-    Creation_Schema_NCT_Tampon <- " CREATE SCHEMA IF NOT EXISTS \"pubmed_tmp\" 
-                                  AUTHORIZATION \"INC_U_PRI_A\" ;
-                                  GRANT USAGE ON SCHEMA \"pubmed_tmp\" TO \"INC_U_PRI\" ;
-                                  GRANT ALL ON SCHEMA \"pubmed_tmp\" TO \"INC_U_DSI\" ;"
-    
-    # execution
-    dbGetQuery(con, Creation_Schema_NCT_Tampon)
+    # # requete
+    # Creation_Schema_NCT_Tampon <- " CREATE SCHEMA IF NOT EXISTS \"pubmed_tmp\" 
+    #                               AUTHORIZATION \"INC_U_PRI_A\" ;
+    #                               GRANT USAGE ON SCHEMA \"pubmed_tmp\" TO \"INC_U_PRI\" ;
+    #                               GRANT ALL ON SCHEMA \"pubmed_tmp\" TO \"INC_U_DSI\" ;"
+    # 
+    # # execution
+    # dbGetQuery(con, Creation_Schema_NCT_Tampon)
+    pstgr_init_schema("pubmed_tmp")
     
     ## 2 - Creation tables vides 
       # simple / multiple a partir du referentiel 
-    pstgr_write_table_vide(ref_comptage = ref_balises)
+    pstgr_write_table_pubmed_vide(ref_comptage = ref_balises, nom_schema = "pubmed_tmp", nom_table = "pubmed")
     
     ## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
     
@@ -153,15 +154,17 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_DESC, id_fic = "id_desc", nom_outpu
 
 # 4.4 on sépare les données et on les remonte sous PostGre
 
-## création du schema temp + structure de la table
-
-## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
-## simple et mult pour DESC
-
-
-
 # lecture referentiel valide en INPUT
 ref_balises_desc <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_desc.csv'))
+
+## 1 - INIT du schema 
+pstgr_init_schema("pubmed_tmp")
+
+## 2 - Creation tables vides 
+  # simple / multiple a partir du referentiel 
+pstgr_write_table_desc_vide(ref_comptage = ref_balises_desc, nom_schema = "pubmed_tmp", nom_table = "desc")
+
+
     
 ## Traitements des fichiers RDS ----
 balisage_RDS(referentiel = ref_balises_desc, 
