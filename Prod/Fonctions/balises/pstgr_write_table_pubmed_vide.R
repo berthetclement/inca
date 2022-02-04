@@ -132,6 +132,7 @@ pstgr_write_table_pubmed_vide <- function(ref_comptage, nom_schema, nom_table){
                                    ".",
                                    "\"",
                                    nom_table,
+                                   "\"",
                                    " (\"id_pubmed\",\"chemin\") ;")
   requete_creation_index_bis <- paste0("CREATE INDEX IF NOT EXISTS \"cle_id_pubmed_mult_id\" ON ",
                                        "\"",

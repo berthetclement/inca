@@ -91,14 +91,6 @@ sapply(fonctions_source_balises, source)
     con <- dbConnect(drv_generic, config$conn, port=config$port, user=config$user, password=config$password, dbname=config$dbname)
     
     ## 1 - INIT du schema 
-    # # requete
-    # Creation_Schema_NCT_Tampon <- " CREATE SCHEMA IF NOT EXISTS \"pubmed_tmp\" 
-    #                               AUTHORIZATION \"INC_U_PRI_A\" ;
-    #                               GRANT USAGE ON SCHEMA \"pubmed_tmp\" TO \"INC_U_PRI\" ;
-    #                               GRANT ALL ON SCHEMA \"pubmed_tmp\" TO \"INC_U_DSI\" ;"
-    # 
-    # # execution
-    # dbGetQuery(con, Creation_Schema_NCT_Tampon)
     pstgr_init_schema("pubmed_tmp")
     
     ## 2 - Creation tables vides 
@@ -111,8 +103,8 @@ sapply(fonctions_source_balises, source)
     ## Traitements des fichiers RDS ----
     balisage_RDS(referentiel = ref_balises, 
                  name_id = "id_pubmed",
-                 repertoire_in = "save_RDS/", # "Prod/Output/pubmed_rds/"
-                 repertoire_out = chemin_output_balises) 
+                 repertoire_in = "save_RDS/", # [TEST] "Prod/Output/pubmed_rds/"
+                 repertoire_out = chemin_output_balises) # parametre deprecie
 
 
 

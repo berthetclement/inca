@@ -12,7 +12,7 @@
 
 pstgr_init_schema <- function(nom_schema){
   # requete
-  Creation_Schema_NCT_Tampon <- paste("CREATE SCHEMA IF NOT EXISTS ", 
+  Creation_Schema_NCT_Tampon <- paste0("CREATE SCHEMA IF NOT EXISTS ", 
                                       "\"", 
                                       nom_schema, 
                                       "\"", 
@@ -21,8 +21,8 @@ pstgr_init_schema <- function(nom_schema){
                                       "\"",
                                       nom_schema, 
                                       "\"", 
-                                      " TO \"INC_U_PRI\ ;
-                                      GRANT ALL ON SCHEMA",
+                                      " TO \"INC_U_PRI\" ;
+                                      GRANT ALL ON SCHEMA ",
                                       "\"", 
                                       nom_schema, 
                                       "\"", 
