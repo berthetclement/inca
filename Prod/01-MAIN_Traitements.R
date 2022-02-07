@@ -79,29 +79,20 @@ sapply(fonctions_source_balises, source)
                      nom_output = "cpt_balises_pubmed")
   # 3.4 on separe les données et on les remonte sous PostGre
     
-    # lecture referentiel valide en INPUT
-    ref_balises <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_pubmed.csv'))
-    
     ## creation du schema temp + structure de la table
-    
-    # parametres de connexion
-    chemin_configuration <- "Prod/Config/"
-    config <- read.table(file = paste0(chemin_configuration,"config.txt"), sep = ";", header = TRUE, stringsAsFactors = FALSE)
-    drv_generic <- dbDriver("PostgreSQL")
-    con <- dbConnect(drv_generic, config$conn, port=config$port, user=config$user, password=config$password, dbname=config$dbname)
     
     ## 1 - INIT du schema 
     pstgr_init_schema("pubmed_tmp")
     
     ## 2 - Creation tables vides 
       # simple / multiple a partir du referentiel 
-    pstgr_write_table_pubmed_vide(ref_comptage = ref_balises, nom_schema = "pubmed_tmp", nom_table = "pubmed")
+    pstgr_write_table_pubmed_vide(ref_comptage = path_ref_cpt_pubmed, nom_schema = "pubmed_tmp", nom_table = "pubmed")
     
     ## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
     
     
     ## Traitements des fichiers RDS ----
-    balisage_RDS(referentiel = ref_balises, 
+    balisage_RDS(referentiel = path_ref_cpt_pubmed, 
                  name_id = "id_pubmed",
                  repertoire_in = DIR_OUTPUT_RDS_PUBMED, # [TEST] "save_RDS/"
                  repertoire_out = chemin_output_balises, # parametre deprecie
@@ -150,20 +141,15 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_DESC,
 
 # 4.4 on sépare les données et on les remonte sous PostGre
 
-# lecture referentiel valide en INPUT
-ref_balises_desc <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_desc.csv'))
-
 ## 1 - INIT du schema 
 pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
   # simple / multiple a partir du referentiel 
-pstgr_write_table_desc_vide(ref_comptage = ref_balises_desc, nom_schema = "pubmed_tmp", nom_table = "desc")
+pstgr_write_table_desc_vide(ref_comptage = path_ref_cpt_desc, nom_schema = "pubmed_tmp", nom_table = "desc")
 
-
-    
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = ref_balises_desc, 
+balisage_RDS(referentiel = path_ref_cpt_desc, 
              name_id = "id_desc", 
              repertoire_in = DIR_OUTPUT_RDS_DESC, 
              repertoire_out = "Prod/Output/balises_rds/desc/",
@@ -205,19 +191,16 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_SUPP, id_fic = "id_supp", nom_outpu
     
 # 5.4 on sépare les données et on les remonte sous PostGre
 
-# lecture referentiel valide en INPUT
-ref_balises_Supp <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_Supp.csv'))
-
 ## 1 - INIT du schema 
 pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_supp_vide(ref_comptage = ref_balises_Supp, nom_schema = "pubmed_tmp", nom_table = "supp")
+pstgr_write_table_supp_vide(ref_comptage = path_ref_cpt_supp, nom_schema = "pubmed_tmp", nom_table = "supp")
 
     
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = ref_balises_Supp, 
+balisage_RDS(referentiel = path_ref_cpt_supp, 
              name_id = "id_supp", 
              repertoire_in = DIR_OUTPUT_RDS_SUPP, 
              repertoire_out = "Prod/Output/balises_rds/supp/",
@@ -263,20 +246,17 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_PA,
 
     
 # 6.4 on sépare les données et on les remonte sous PostGre
-    
-# lecture referentiel valide en INPUT
-ref_balises_Pa <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_Pa.csv'))
 
 ## 1 - INIT du schema 
 pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_pa_vide(ref_comptage = ref_balises_Pa, nom_schema = "pubmed_tmp", nom_table = "pa")
+pstgr_write_table_pa_vide(ref_comptage = path_ref_cpt_pa, nom_schema = "pubmed_tmp", nom_table = "pa")
 
 
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = ref_balises_Pa, 
+balisage_RDS(referentiel = path_ref_cpt_pa, 
              name_id = "id_pa", 
              repertoire_in = DIR_OUTPUT_RDS_PA, 
              repertoire_out = "Prod/Output/balises_rds/Pa/",
@@ -322,19 +302,16 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_QUAL, id_fic = "id_qual", nom_outpu
     
 # 7.4 on sépare les données et on les remonte sous PostGre
 
-# lecture referentiel valide en INPUT
-ref_balises_Qual <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_qual.csv'))
-
 ## 1 - INIT du schema 
 pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_qual_vide(ref_comptage = ref_balises_Qual, nom_schema = "pubmed_tmp", nom_table = "qual")
+pstgr_write_table_qual_vide(ref_comptage = path_ref_cpt_qual, nom_schema = "pubmed_tmp", nom_table = "qual")
 
 
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = ref_balises_Qual, 
+balisage_RDS(referentiel = path_ref_cpt_qual, 
              name_id = "id_qual", 
              repertoire_in = DIR_OUTPUT_RDS_QUAL, 
              repertoire_out = "Prod/Output/balises_rds/qual/",

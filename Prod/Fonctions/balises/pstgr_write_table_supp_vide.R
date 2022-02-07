@@ -8,7 +8,14 @@
 #                                                       #
 #-------------------------------------------------------#
 
+## Description parameters : 
+  # ref_comptage : chemin complet du referentiel de comptage (ex: "file.csv") 
+  # nom_schema : nom du schema en caracteres
+  # nom_table : nom de la table en caracteres
+
 pstgr_write_table_supp_vide <- function(ref_comptage, nom_schema, nom_table){
+  # lecture referentiel valide en INPUT
+  ref_comptage <- read.csv2(ref_comptage)
   
   ###
   ## tables simples

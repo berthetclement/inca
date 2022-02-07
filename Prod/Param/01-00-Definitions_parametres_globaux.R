@@ -270,6 +270,50 @@ chemin_output_trees <- paste0(DIR_OUTPUT, "mesh_trees/")
 
 
 
+#-------------------------------------------------------#
+#                                                       #
+#                    REF_COMPTAGE                       #
+#                                                       #
+#-------------------------------------------------------#
+
+# REF_COMPTAGE ----
+
+## PUBMED
+nom_ref_cpt_pubmed <- "cpt_balises_pubmed"
+path_ref_cpt_pubmed <- paste0(chemin_output_ref_comptage, nom_ref_cpt_pubmed, '.csv')
+
+## DESC 
+nom_ref_cpt_desc <- "cpt_balises_desc"
+path_ref_cpt_desc <- paste0(chemin_output_ref_comptage, nom_ref_cpt_desc, '.csv')
+
+## SUPP 
+nom_ref_cpt_supp <- "cpt_balises_Supp"
+path_ref_cpt_supp <- paste0(chemin_output_ref_comptage, nom_ref_cpt_supp, '.csv')
+
+## PA 
+nom_ref_cpt_pa <- "cpt_balises_Pa"
+path_ref_cpt_pa <- paste0(chemin_output_ref_comptage, nom_ref_cpt_pa, '.csv')
+
+## QUAL 
+nom_ref_cpt_qual <- "cpt_balises_qual"
+path_ref_cpt_qual <- paste0(chemin_output_ref_comptage, nom_ref_cpt_qual, '.csv')
+
+
+
+#-------------------------------------------------------#
+#                                                       #
+#                    POSTGRES                           #
+#                                                       #
+#-------------------------------------------------------#
+
+# POSTGRES ----
+
+## INIT CONNEXION
+# parametres de connexion
+chemin_configuration <- "Prod/Config/"
+config <- read.table(file = paste0(chemin_configuration,"config.txt"), sep = ";", header = TRUE, stringsAsFactors = FALSE)
+drv_generic <- dbDriver("PostgreSQL")
+con <- dbConnect(drv_generic, config$conn, port=config$port, user=config$user, password=config$password, dbname=config$dbname)
 
 
 

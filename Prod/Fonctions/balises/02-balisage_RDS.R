@@ -8,9 +8,19 @@
 #                                                       #
 #-------------------------------------------------------#
 
+## Description parameters : 
+  # referentiel : chemin complet du referentiel de comptage (ex: "file.csv") 
+  # name_id, 
+  # repertoire_in, 
+  # repertoire_out, 
+  # nom_schema, 
+  # nom_table
 
 balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out, nom_schema, nom_table){
-# test si RDS en output
+  # lecture referentiel valide en INPUT
+  referentiel <- read.csv2(referentiel)
+  
+  # test si RDS en output
   ls_fic <- list.files(repertoire_in, pattern = "*.RDS")
   if(length(ls_fic)>0){
     
