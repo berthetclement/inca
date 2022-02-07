@@ -1,8 +1,29 @@
+
+#-------------------------------------------------------#
+#                                                       #
+#                                                       #
+#                                                       #
+#                comptage_balise.R                      #
+#                                                       #
+#                                                       #
+#                                                       #
+#-------------------------------------------------------#
+
+## Contexte : 
+# Fonction Fabrique le referentiel (pubmed/desc/supp/...)
+# Scan un repertoire contenant les .RDS  
+# En sortie : Ecrit le referentiel avec les types de balises identifiees
+
+## Description parameters : 
+# nom_chemin,
+# id_fic,
+# nom_output
+
 comptage_balise <- function(nom_chemin,id_fic,nom_output) {
 
   #### Comptage des balises  
   
-  ## on liste l'ensemble des fichiers RDS présents dans le répertoire
+  ## on liste l'ensemble des fichiers RDS présents dans le repertoire
   liste_fic <- list.files(nom_chemin, pattern = "*.RDS")
   
   ## nombre de fichier à traiter

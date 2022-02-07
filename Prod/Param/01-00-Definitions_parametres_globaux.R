@@ -39,7 +39,10 @@ chemin_log <- "Prod/Log/"
 chemin_fonctions <- "Prod/Fonctions/"
 
 # pour chargement des fonctions en memoire
-file_sources = list.files(pattern="*\\.R", path = chemin_fonctions, full.names = TRUE)
+file_sources = list.files(pattern="*\\.R", 
+                          path = chemin_fonctions, 
+                          full.names = TRUE, 
+                          recursive = TRUE)
 
 #  chemin OUTPUT  ----
 chemin_output <- "Prod/Output/"

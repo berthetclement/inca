@@ -21,7 +21,8 @@ source("Prod/Param/01-00-Definitions_parametres_globaux.R")
 
 # 2 - Chargement des fonctions externes ----
 sapply(file_sources,source)
-sapply(fonctions_source_balises, source)
+
+# sapply(fonctions_source_balises, source)
 
 
 #-------------------------------------------------------#

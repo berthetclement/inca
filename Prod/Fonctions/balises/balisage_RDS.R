@@ -2,11 +2,16 @@
 #                                                       #
 #                                                       #
 #                                                       #
-#                02-balisage_RDS.R                      #
+#                balisage_RDS.R                         #
 #                                                       #
 #                                                       #
 #                                                       #
 #-------------------------------------------------------#
+
+## Contexte : 
+  # Fonction qui scan un repertoire contenant des .RDS 
+  # Appel la fonction de decoupage en table simples/multiples : split_rds()
+  # En sortie : Ecrit les tables simples/multiples sous postgres : pstgr_write_table()
 
 ## Description parameters : 
   # referentiel : chemin complet du referentiel de comptage (ex: "file.csv") 
@@ -16,7 +21,7 @@
   # nom_schema, 
   # nom_table
 
-balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out, nom_schema, nom_table){
+balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out= NULL, nom_schema, nom_table){
   # lecture referentiel valide en INPUT
   referentiel <- read.csv2(referentiel)
   

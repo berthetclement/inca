@@ -58,7 +58,11 @@ Lancement_PUBMED <- function(stop_index_id=999999,reprise=FALSE) {
   ## on bloque au max :
   if (stop_index_id == 999999) {stop_index_id <- length(r_search$ids)}
 
-  full_traitements_xml(id_a_charger=id_a_charger,r_search=r_search,pos_id_start= start_index_id, pos_id_end= stop_index_id, by_nb_id= step_by_id)
+  full_traitements_xml(id_a_charger=id_a_charger,
+                       r_search=r_search,
+                       pos_id_start= start_index_id, 
+                       pos_id_end= stop_index_id, 
+                       by_nb_id= step_by_id)
   
   
   

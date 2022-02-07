@@ -8,6 +8,18 @@
 #                                                       #
 #-------------------------------------------------------#
 
+## Contexte : 
+# Fonction traitant les dates   
+# Transforme plusieurs lignes d'une date (day-month-year) en une seule ligne
+# En sortie : Pour chaque id et pour chaque type de date, la date est concatenee sur une ligne
+
+## Description parameters : 
+# referentiel : chemin complet du referentiel de comptage (ex: "file.csv") 
+# name_id, 
+# repertoire_in, 
+# repertoire_out, 
+# nom_schema, 
+# nom_table
 
 balises_simples_dates <- function(df_table_simple, name_id, ref){
   var_id <- sym(name_id)
