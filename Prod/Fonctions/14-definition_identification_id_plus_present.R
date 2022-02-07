@@ -1,6 +1,6 @@
 identification_id_plus_present <- function() {
   ## liste des id charges
-  suivi_id_fetch <- read.csv2(paste0(chemin_output, nom_fichier_suivi_id))
+  suivi_id_fetch <- read.csv2(paste0(DIR_OUTPUT, FILE_SUIVI_PUBMED))
   id_integres <- suivi_id_fetch %>%  
     filter(fetch_id==TRUE) %>%
     select(recherche_id)

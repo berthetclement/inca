@@ -74,7 +74,7 @@ sapply(fonctions_source_balises, source)
     ## si > 0 : on lance le script de nettoyage ci-dessous :
     suppression_en_doublons()
   # 3.3 on sort les informations pour identifier les balises simples ou à retravailler
-    comptage_balise (nom_chemin = chemin_pubmed_rds,
+    comptage_balise (nom_chemin = DIR_OUTPUT_RDS_PUBMED,
                      id_fic =  "id_pubmed",
                      nom_output = "cpt_balises_pubmed")
   # 3.4 on separe les données et on les remonte sous PostGre
@@ -103,7 +103,7 @@ sapply(fonctions_source_balises, source)
     ## Traitements des fichiers RDS ----
     balisage_RDS(referentiel = ref_balises, 
                  name_id = "id_pubmed",
-                 repertoire_in = "Prod/Output/pubmed_rds/", # [TEST] "save_RDS/"
+                 repertoire_in = DIR_OUTPUT_RDS_PUBMED, # [TEST] "save_RDS/"
                  repertoire_out = chemin_output_balises, # parametre deprecie
                  nom_schema = "pubmed_tmp", 
                  nom_table = "pubmed") 
@@ -121,29 +121,31 @@ sapply(fonctions_source_balises, source)
 # 4 - Traitements fichiers XML DESC (referentiel) ----
 # 4.1 on charge l'ensemble des fichiers mesh (par paquet définit dans les paramètres)
 temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_MESH_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
+write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_DESC_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
     
 ## ouverture de la log
-journal("02-Traitements_fichiers_XML_MESH"," 02-Traitements_fichiers_XML_MESH")
+journal("02-Traitements_fichiers_XML_DESC"," 02-Traitements_fichiers_XML_DESC")
     
-print("Programme: 02-Traitements_fichiers_XML_MESH")
+print("Programme: 02-Traitements_fichiers_XML_DESC")
 print("Heure lancement: ")
 print(as.character(Sys.time()))
     
 #splitter_en bloc _de 1000
-traitements_xml_by_type("desc","desc2022.xml")
+traitements_xml_by_type("desc",FILE_INPUT_DESC)
     
 ## fermeture de la log
 sink()
     
 temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_MESH_heure_fin.txt'), col.names = TRUE, row.names = FALSE)
+write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_DESC_heure_fin.txt'), col.names = TRUE, row.names = FALSE)
 
 # 4.2 on vérifie si on a bien intégrer tous les mesh
 # à écrire
     
 # 4.3 on sort les informations pour identifier les balises simples ou à retravailler
-comptage_balise (nom_chemin = DIR_OUTPUT_RDS_DESC, id_fic = "id_desc", nom_output = "cpt_balises_desc")
+comptage_balise (nom_chemin = DIR_OUTPUT_RDS_DESC,
+                 id_fic = "id_desc",
+                 nom_output = "cpt_balises_desc")
 
 
 # 4.4 on sépare les données et on les remonte sous PostGre
@@ -176,32 +178,32 @@ balisage_RDS(referentiel = ref_balises_desc,
     #-------------------------------------------------------#
     
     
-# 4 - Traitements fichiers XML SUPP (referentiel) ----
+# 5 - Traitements fichiers XML SUPP (referentiel) ----
 
     
-# 4.1 on charge l'ensemble des fichiers mesh (par paquet définit dans les paramètres)
+# 5.1 on charge l'ensemble des fichiers mesh (par paquet définit dans les paramètres)
 temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_MESH_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
+write.table(temps,file=paste0(chemin_tps_traitment,'05-Traitements_fichiers_XML_SUPP_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
 
 ## ouverture de la log
-journal("02-Traitements_fichiers_XML_MESH"," 02-Traitements_fichiers_XML_MESH")
+journal("05-Traitements_fichiers_XML_SUPP"," 05-Traitements_fichiers_XML_SUPP")
 
-print("Programme: 02-Traitements_fichiers_XML_MESH")
+print("Programme: 05-Traitements_fichiers_XML_SUPP")
 print("Heure lancement: ")
 print(as.character(Sys.time()))
     
-traitements_xml_by_type("supp", "supp2022.xml")
+traitements_xml_by_type("supp", FILE_INPUT_SUPP)
     
 ## fermeture de la log
 sink()
 
-# 4.2 on vérifie si on a bien intégrer tous les mesh
+# 5.2 on vérifie si on a bien intégrer tous les mesh
 # à écrire
     
-# 4.3 on sort les informations pour identifier les balises simples ou à retravailler
+# 5.3 on sort les informations pour identifier les balises simples ou à retravailler
 comptage_balise (nom_chemin = DIR_OUTPUT_RDS_SUPP, id_fic = "id_supp", nom_output = "cpt_balises_Supp")
     
-# 4.4 on sépare les données et on les remonte sous PostGre
+# 5.4 on sépare les données et on les remonte sous PostGre
 
 # lecture referentiel valide en INPUT
 ref_balises_Supp <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_Supp.csv'))
@@ -232,36 +234,35 @@ balisage_RDS(referentiel = ref_balises_Supp,
     #-------------------------------------------------------#
     
     
-# 4 - Traitements fichiers XML PA (referentiel) ----
+# 6 - Traitements fichiers XML PA (referentiel) ----
     
     
-# 4.1 on charge l'ensemble des fichiers mesh (par paquet définit dans les paramètres)
+# 6.1 on charge l'ensemble des fichiers PA (par paquet définit dans les paramètres)
 temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_MESH_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
+write.table(temps,file=paste0(chemin_tps_traitment,'06-Traitements_fichiers_XML_PA_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
 
 ## ouverture de la log
-journal("02-Traitements_fichiers_XML_MESH"," 02-Traitements_fichiers_XML_MESH")
+journal("06-Traitements_fichiers_XML_PA"," 06-Traitements_fichiers_XML_PA")
     
-print("Programme: 02-Traitements_fichiers_XML_MESH")
+print("Programme: 06-Traitements_fichiers_XML_PA")
 print("Heure lancement: ")
 print(as.character(Sys.time()))
 
-## la fonction de découpage ne fonctionne pas ici
-    
-traitements_xml_by_type("pa","pa2022.xml")
+
+traitements_xml_by_type("pa",FILE_INPUT_PA)
     
 ## fermeture de la log
 sink()
-# 4.2 on vérifie si on a bien intégrer tous les mesh
+# 6.2 on vérifie si on a bien intégrer tous les mesh
 # à écrire
     
-# 4.3 on sort les informations pour identifier les balises simples ou à retravailler
+# 6.3 on sort les informations pour identifier les balises simples ou à retravailler
 comptage_balise (nom_chemin = DIR_OUTPUT_RDS_PA,
                  id_fic = "id_pa",                     
                  nom_output = "cpt_balises_Pa")
 
     
-# 4.4 on sépare les données et on les remonte sous PostGre
+# 6.4 on sépare les données et on les remonte sous PostGre
     
 # lecture referentiel valide en INPUT
 ref_balises_Pa <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_Pa.csv'))
@@ -292,34 +293,34 @@ balisage_RDS(referentiel = ref_balises_Pa,
     #-------------------------------------------------------#
     
     
-# 4 - Traitements fichiers XML PA (referentiel) ----
+# 7 - Traitements fichiers XML PA (referentiel) ----
     
     
-# 4.1 on charge l'ensemble des fichiers mesh (par paquet définit dans les paramètres)
+# 7.1 on charge l'ensemble des fichiers QUAL (par paquet définit dans les paramètres)
 temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_MESH_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
+write.table(temps,file=paste0(chemin_tps_traitment,'07-Traitements_fichiers_XML_QUAL_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
     
 ## ouverture de la log
-journal("02-Traitements_fichiers_XML_MESH"," 02-Traitements_fichiers_XML_MESH")
+journal("07-Traitements_fichiers_XML_QUAL"," 07-Traitements_fichiers_XML_QUAL")
     
-print("Programme: 02-Traitements_fichiers_XML_MESH")
+print("Programme: 07-Traitements_fichiers_XML_MESH")
 print("Heure lancement: ")
 print(as.character(Sys.time()))
   
     
-traitements_xml_by_type("qual","qual2022.xml")
+traitements_xml_by_type("qual",FILE_INPUT_QUAL)
     
 ## fermeture de la log
 sink()
 
-# 4.2 on vérifie si on a bien intégrer tous les mesh
+# 7.2 on vérifie si on a bien intégrer tous les mesh
 # à écrire
     
-# 4.3 on sort les informations pour identifier les balises simples ou à retravailler
+# 7.3 on sort les informations pour identifier les balises simples ou à retravailler
 comptage_balise (nom_chemin = DIR_OUTPUT_RDS_QUAL, id_fic = "id_qual", nom_output = "cpt_balises_qual")
     
     
-# 4.4 on sépare les données et on les remonte sous PostGre
+# 7.4 on sépare les données et on les remonte sous PostGre
 
 # lecture referentiel valide en INPUT
 ref_balises_Qual <- read.csv2(paste0(chemin_output_ref_comptage, 'cpt_balises_qual.csv'))
@@ -347,14 +348,14 @@ balisage_RDS(referentiel = ref_balises_Qual,
 #                                                       #
 #-------------------------------------------------------#
 
-# 5 - Traitements MESH TREES ----
+# 8 - Traitements MESH TREES ----
 temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'03-Traitements_MESH_TREES_heure_debut.txt'), col.names = TRUE, row.names = FALSE)  
+write.table(temps,file=paste0(chemin_tps_traitment,'08-Traitements_MESH_TREES_heure_debut.txt'), col.names = TRUE, row.names = FALSE)  
 
 source(paste0(chemin_script, "03-Traitements_MESH_TREES.R"))
 
 temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'03-Traitements_MESH_TREES_heure_fin.txt'), col.names = TRUE, row.names = FALSE)
+write.table(temps,file=paste0(chemin_tps_traitment,'08-Traitements_MESH_TREES_heure_fin.txt'), col.names = TRUE, row.names = FALSE)
 
 
 

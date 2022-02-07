@@ -20,10 +20,6 @@ full_traitements_xml <- function(id_a_charger,r_search,pos_id_start, pos_id_end,
   # premier decoupage de la sequence d'id 
   for( seq_index in seq(pos_id_start, pos_id_end, by_nb_id)){
     
-    #identification du lot : on met le datetime dans le nom
-    i_lot <- format(Sys.time(),"%Y%m%d%H%M%S")
-   
-     
     # fetch
     
     # on va gérer les cas où l'on doit ramener moins de publication que le step_by
@@ -42,13 +38,12 @@ full_traitements_xml <- function(id_a_charger,r_search,pos_id_start, pos_id_end,
     # pour chaque lot de fichiers xml => export RDS
     # un seul data frame pour l'ensemble des fichiers n'est pas possible
     # check des id avec NCT : appel a la fonction 07-definition_foctions_check_xml.R
-    traitements_xml(id_a_charger = id_a_charger
-                    ,r_search = r_search
-                    ,full_xml_database = full_recs_xml_web
-                    ,export_path_file = chemin_pubmed_rds
-                    ,i_lot = i_lot)
+    traitements_xml_pubmed(id_a_charger = id_a_charger
+                           ,r_search = r_search
+                           ,full_xml_database = full_recs_xml_web
+                           ,i_lot = format(Sys.time(),"%Y%m%d%H%M%S"))
     
     rm(full_recs_xml_web)
-
+    
   }
 }

@@ -19,7 +19,7 @@ split_rds <- function(obj_rds, simple_table= FALSE, name_id, referentiel){
   
   ## balises simples
   ident_balises_simples <- referentiel %>% 
-    filter(grepl("simple", type_balise) & !grepl("non_significative", type_balise))
+    filter(grepl("simple", type_balise) & !grepl("non_significative", type_balise) & !grepl("erron", type_balise))
   
   # balises simples erronees
   ident_balises_simples_err <- referentiel %>% 
