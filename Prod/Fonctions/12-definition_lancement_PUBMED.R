@@ -27,16 +27,19 @@ Lancement_PUBMED <- function(stop_index_id=999999,reprise=FALSE) {
                         search_term= "(ClinicalTrials.gov[Secondary Source ID])",
                         opt_history= TRUE)
   
-  saveRDS(r_search,paste0(chemin_output,"VERIFICATION/r_search",format(Sys.time(),"%Y%m%d%H%M%S"),".RDS"))
+  saveRDS(r_search,paste0(DIR_OUTPUT_SUIVI,"VERIFICATION/r_search",format(Sys.time(),"%Y%m%d%H%M%S"),".RDS"))
   
   # on définit la liste des id_a_charger
   if (reprise == FALSE) {
     id_a_charger <- r_search$ids
     # 6 - Suppression ----
     # suppression du fichier de suivi 
-    if(file.exists(paste0(chemin_output, nom_fichier_suivi_id))){
-      file.remove(paste0(chemin_output, nom_fichier_suivi_id))
+    if(file.exists(paste0(DIR_OUTPUT_SUIVI, FILE_SUIVI_PUBMED))){
+      file.remove(paste0(DIR_OUTPUT_SUIVI, FILE_SUIVI_PUBMED))
     }
+    # suppression des RDS déjà chargés
+    print(paste("Suppression des fichiers dans le répertoire : ", DIR_OUTPUT_RDS_PUBMED))
+    do.call(file.remove, list(list.files(DIR_OUTPUT_RDS_PUBMED, full.names = TRUE)))
   } else {
     id_a_charger <- identification_id_a_charger()
   }
@@ -77,7 +80,7 @@ Lancement_PUBMED <- function(stop_index_id=999999,reprise=FALSE) {
   # 
   
   # [ajout]
-  suivi_id_fetch <- read.csv2(paste0(chemin_output, nom_fichier_suivi_id))
+  suivi_id_fetch <- read.csv2(paste0(DIR_OUTPUT_SUIVI, FILE_SUIVI_PUBMED))
   
   print("*** Suivi des téléchargements : ***")
   text <- paste0("Nombre de publications retenues : ", stop_index_id)

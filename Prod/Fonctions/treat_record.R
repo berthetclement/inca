@@ -2,7 +2,6 @@
 ## nom_parent_id et nom_balise_id utilisés pour détecter l'identifiant de l'enregistrement
 ## Retourne un data frame / data table avec une colonne id_{data_type} pour identifier l'enregistrement
 
-
 treat_record <- function(children_0, nom_parent_id, nom_balise_id, data_type){
   
   df_record = initialize_df_record()
@@ -25,10 +24,11 @@ treat_record <- function(children_0, nom_parent_id, nom_balise_id, data_type){
   
   dt_record = as.data.table(df_record)
   
-  id_unique_file = dt_record %>% filter(Nom_balise == nom_balise_id & Parent == nom_parent_id) %>% pull(Valeur)
-  
-  dt_record = dt_record %>% mutate(id = id_unique_file)
-  colnames(dt_record)[which(colnames(dt_record) == "id")] = paste("id", data_type, sep = "_")
+  if(data_type != "pubmed"){
+    id_unique_file = dt_record %>% filter(Nom_balise == nom_balise_id & Parent == nom_parent_id) %>% pull(Valeur)
+    dt_record = dt_record %>% mutate(id = id_unique_file)
+    colnames(dt_record)[which(colnames(dt_record) == "id")] = paste("id", data_type, sep = "_")
+  }
   
   return(dt_record)  
 }
