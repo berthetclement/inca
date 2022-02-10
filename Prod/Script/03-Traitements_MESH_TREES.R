@@ -26,7 +26,7 @@ print(as.character(Sys.time()))
 cat("\n")
 
 # 1 - Chargement fichier
-path <- paste0(chemin_input, nom_fichier_mesh_trees)
+path <- paste0(DIR_INPUT_DATA, nom_fichier_mesh_trees)
 fic_mesh_tree <- read.delim(file = path, header = FALSE, dec = ",", sep = ";")
 
 # TO LOG

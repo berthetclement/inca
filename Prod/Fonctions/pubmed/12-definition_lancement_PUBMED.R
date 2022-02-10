@@ -17,6 +17,10 @@ Lancement_PUBMED <- function(stop_index_id=999999,reprise=FALSE) {
   #   1 - Recherches d'occurences de texte dans les publications
   #   2 - Telechargement des publications pubmed au format xml
   ##
+  
+  temps <- as.data.frame(Sys.time())
+  write.table(temps,file=paste0(chemin_tps_traitment,'03-Chargement_fichiers_XML_PUBMED_heure_debut.txt'), col.names = TRUE, row.names = FALSE)  
+  
 
   # 0 - Creation d'une log 
   journal("01-Traitements_fichiers_XML_PUBMED","01-Traitements_fichiers_XML_PUBMED")
@@ -60,30 +64,12 @@ Lancement_PUBMED <- function(stop_index_id=999999,reprise=FALSE) {
 
   full_traitements_xml(id_a_charger=id_a_charger,
                        r_search=r_search,
-                       pos_id_start= start_index_id, 
+                       pos_id_start= 1, 
                        pos_id_end= stop_index_id, 
                        by_nb_id= step_by_id)
   
-  
-  
-  # 7 - Resume du suivi des telechargements ----
-  # TO LOG 
-  
-  
-  
-  # # on définit récupère la liste desid chargé pour faire le bilan
-  # if (reprise == FALSE) {
-  #   suivi_id_fetch <- read.csv2(paste0(chemin_output, nom_fichier_suivi_id))
-  #   
-  # } else {
-  #   suivi_id_fetch <- read.csv2(paste0(chemin_output, nom_fichier_suivi_id))
-  #   #suivi_id_fetch_hist <- read.csv2(paste0(chemin_output, "Suivi_id_PUBMED_hist.csv"))
-  #   
-  #   #suivi_id_fetch <- rbind(suivi_id_fetch_hist,suivi_id_fetch)
-  # }
-  # 
-  
-  # [ajout]
+
+
   suivi_id_fetch <- read.csv2(paste0(DIR_OUTPUT_SUIVI, FILE_SUIVI_PUBMED))
   
   print("*** Suivi des téléchargements : ***")
@@ -115,4 +101,11 @@ Lancement_PUBMED <- function(stop_index_id=999999,reprise=FALSE) {
   
   sink()
 
+  
+  # fin timer du programme
+  temps <- as.data.frame(Sys.time())
+  write.table(temps,file=paste0(chemin_tps_traitment,'03-Chargement_fichiers_XML_PUBMED_heure_fin.txt'), col.names = TRUE, row.names = FALSE) 
+  
+  
+  
 }

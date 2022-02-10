@@ -22,8 +22,6 @@ source("Prod/Param/01-00-Definitions_parametres_globaux.R")
 # 2 - Chargement des fonctions externes ----
 sapply(file_sources,source)
 
-# sapply(fonctions_source_balises, source)
-
 
 #-------------------------------------------------------#
 #                                                       #
@@ -33,22 +31,15 @@ sapply(file_sources,source)
 
 
 # 3 - Traitements fichiers XML PUBMED ----
-  # debut timer du programme
 
   # 3.1 on charge l'ensemble des balises
   ## chargement des 70k premiers dossiers car à partir de 77k on a systématiquement une erreur
     ## ==> on fait en 2 fois
-  temps <- as.data.frame(Sys.time())
-  write.table(temps,file=paste0(chemin_tps_traitment,'01-Chargement_fichiers_XML_PUBMED_heure_debut.txt'), col.names = TRUE, row.names = FALSE)  
 
   Lancement_PUBMED(stop_index_id = 60000, reprise = FALSE)
   Lancement_PUBMED(stop_index_id = 999999,reprise = TRUE)
 
-  
-  # fin timer du programme
-  temps <- as.data.frame(Sys.time())
-  write.table(temps,file=paste0(chemin_tps_traitment,'01-Chargement_fichiers_XML_PUBMED_heure_fin.txt'), col.names = TRUE, row.names = FALSE) 
-  
+   
   # 3.2 on vérifie si on a bien intégrer toutes les publications et si certaines ont "disparu"
 
     # 3.2.1 : les publications non intégrées
@@ -87,13 +78,13 @@ sapply(file_sources,source)
     
     ## 2 - Creation tables vides 
       # simple / multiple a partir du referentiel 
-    pstgr_write_table_pubmed_vide(ref_comptage = path_ref_cpt_pubmed, nom_schema = "pubmed_tmp", nom_table = "pubmed")
+    pstgr_write_table_pubmed_vide(ref_comptage = PATH_REF_CPT_PUBMED, nom_schema = "pubmed_tmp", nom_table = "pubmed")
     
     ## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
     
     
     ## Traitements des fichiers RDS ----
-    balisage_RDS(referentiel = path_ref_cpt_pubmed, 
+    balisage_RDS(referentiel = PATH_REF_CPT_PUBMED, 
                  name_id = "id_pubmed",
                  repertoire_in = DIR_OUTPUT_RDS_PUBMED, # [TEST] "save_RDS/"
                  repertoire_out = chemin_output_balises, # parametre deprecie
@@ -111,25 +102,10 @@ sapply(file_sources,source)
 
 
 # 4 - Traitements fichiers XML DESC (referentiel) ----
-# 4.1 on charge l'ensemble des fichiers mesh (par paquet définit dans les paramètres)
-temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_DESC_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
-    
-## ouverture de la log
-journal("02-Traitements_fichiers_XML_DESC"," 02-Traitements_fichiers_XML_DESC")
-    
-print("Programme: 02-Traitements_fichiers_XML_DESC")
-print("Heure lancement: ")
-print(as.character(Sys.time()))
-    
+# 4.1 on charge l'ensemble des fichiers DESC (par paquet définit dans les paramètres)
+
 #splitter_en bloc _de 1000
 traitements_xml_by_type("desc",FILE_INPUT_DESC)
-    
-## fermeture de la log
-sink()
-    
-temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'02-Traitements_fichiers_XML_DESC_heure_fin.txt'), col.names = TRUE, row.names = FALSE)
 
 # 4.2 on vérifie si on a bien intégrer tous les mesh
 # à écrire
@@ -147,10 +123,10 @@ pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
   # simple / multiple a partir du referentiel 
-pstgr_write_table_desc_vide(ref_comptage = path_ref_cpt_desc, nom_schema = "pubmed_tmp", nom_table = "desc")
+pstgr_write_table_desc_vide(ref_comptage = PATH_REF_CPT_DESC, nom_schema = "pubmed_tmp", nom_table = "desc")
 
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = path_ref_cpt_desc, 
+balisage_RDS(referentiel = PATH_REF_CPT_DESC, 
              name_id = "id_desc", 
              repertoire_in = DIR_OUTPUT_RDS_DESC, 
              repertoire_out = "Prod/Output/balises_rds/desc/",
@@ -168,27 +144,20 @@ balisage_RDS(referentiel = path_ref_cpt_desc,
 # 5 - Traitements fichiers XML SUPP (referentiel) ----
 
     
-# 5.1 on charge l'ensemble des fichiers mesh (par paquet définit dans les paramètres)
-temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'05-Traitements_fichiers_XML_SUPP_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
+# 5.1 on charge l'ensemble des fichiers SUPP (par paquet définit dans les paramètres)
 
-## ouverture de la log
-journal("05-Traitements_fichiers_XML_SUPP"," 05-Traitements_fichiers_XML_SUPP")
-
-print("Programme: 05-Traitements_fichiers_XML_SUPP")
-print("Heure lancement: ")
-print(as.character(Sys.time()))
     
 traitements_xml_by_type("supp", FILE_INPUT_SUPP)
     
-## fermeture de la log
-sink()
+
 
 # 5.2 on vérifie si on a bien intégrer tous les mesh
 # à écrire
     
 # 5.3 on sort les informations pour identifier les balises simples ou à retravailler
-comptage_balise (nom_chemin = DIR_OUTPUT_RDS_SUPP, id_fic = "id_supp", nom_output = "cpt_balises_Supp")
+comptage_balise (nom_chemin = DIR_OUTPUT_RDS_SUPP,
+                 id_fic = "id_supp",
+                 nom_output = "cpt_balises_Supp")
     
 # 5.4 on sépare les données et on les remonte sous PostGre
 
@@ -197,11 +166,11 @@ pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_supp_vide(ref_comptage = path_ref_cpt_supp, nom_schema = "pubmed_tmp", nom_table = "supp")
+pstgr_write_table_supp_vide(ref_comptage = PATH_REF_CPT_SUPP, nom_schema = "pubmed_tmp", nom_table = "supp")
 
     
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = path_ref_cpt_supp, 
+balisage_RDS(referentiel = PATH_REF_CPT_SUPP, 
              name_id = "id_supp", 
              repertoire_in = DIR_OUTPUT_RDS_SUPP, 
              repertoire_out = "Prod/Output/balises_rds/supp/",
@@ -221,22 +190,11 @@ balisage_RDS(referentiel = path_ref_cpt_supp,
 # 6 - Traitements fichiers XML PA (referentiel) ----
     
     
-# 6.1 on charge l'ensemble des fichiers PA (par paquet définit dans les paramètres)
-temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'06-Traitements_fichiers_XML_PA_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
-
-## ouverture de la log
-journal("06-Traitements_fichiers_XML_PA"," 06-Traitements_fichiers_XML_PA")
-    
-print("Programme: 06-Traitements_fichiers_XML_PA")
-print("Heure lancement: ")
-print(as.character(Sys.time()))
+# # 6.1 on charge l'ensemble des fichiers PA (par paquet définit dans les paramètres)
 
 
 traitements_xml_by_type("pa",FILE_INPUT_PA)
     
-## fermeture de la log
-sink()
 # 6.2 on vérifie si on a bien intégrer tous les mesh
 # à écrire
     
@@ -253,11 +211,13 @@ pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_pa_vide(ref_comptage = path_ref_cpt_pa, nom_schema = "pubmed_tmp", nom_table = "pa")
+pstgr_write_table_pa_vide(ref_comptage = PATH_REF_CPT_PA,
+                          nom_schema = "pubmed_tmp",
+                          nom_table = "pa")
 
 
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = path_ref_cpt_pa, 
+balisage_RDS(referentiel = PATH_REF_CPT_PA, 
              name_id = "id_pa", 
              repertoire_in = DIR_OUTPUT_RDS_PA, 
              repertoire_out = "Prod/Output/balises_rds/Pa/",
@@ -277,28 +237,19 @@ balisage_RDS(referentiel = path_ref_cpt_pa,
 # 7 - Traitements fichiers XML PA (referentiel) ----
     
     
-# 7.1 on charge l'ensemble des fichiers QUAL (par paquet définit dans les paramètres)
-temps <- as.data.frame(Sys.time())
-write.table(temps,file=paste0(chemin_tps_traitment,'07-Traitements_fichiers_XML_QUAL_heure_debut.txt'), col.names = TRUE, row.names = FALSE)
-    
-## ouverture de la log
-journal("07-Traitements_fichiers_XML_QUAL"," 07-Traitements_fichiers_XML_QUAL")
-    
-print("Programme: 07-Traitements_fichiers_XML_MESH")
-print("Heure lancement: ")
-print(as.character(Sys.time()))
+# # 7.1 on charge l'ensemble des fichiers QUAL (par paquet définit dans les paramètres)
   
     
 traitements_xml_by_type("qual",FILE_INPUT_QUAL)
     
-## fermeture de la log
-sink()
 
 # 7.2 on vérifie si on a bien intégrer tous les mesh
 # à écrire
     
 # 7.3 on sort les informations pour identifier les balises simples ou à retravailler
-comptage_balise (nom_chemin = DIR_OUTPUT_RDS_QUAL, id_fic = "id_qual", nom_output = "cpt_balises_qual")
+comptage_balise (nom_chemin = DIR_OUTPUT_RDS_QUAL,
+                 id_fic = "id_qual",
+                 nom_output = "cpt_balises_qual")
     
     
 # 7.4 on sépare les données et on les remonte sous PostGre
@@ -308,11 +259,13 @@ pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_qual_vide(ref_comptage = path_ref_cpt_qual, nom_schema = "pubmed_tmp", nom_table = "qual")
+pstgr_write_table_qual_vide(ref_comptage = PATH_REF_CPT_QUAL,
+                            nom_schema = "pubmed_tmp",
+                            nom_table = "qual")
 
 
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = path_ref_cpt_qual, 
+balisage_RDS(referentiel = PATH_REF_CPT_QUAL, 
              name_id = "id_qual", 
              repertoire_in = DIR_OUTPUT_RDS_QUAL, 
              repertoire_out = "Prod/Output/balises_rds/qual/",

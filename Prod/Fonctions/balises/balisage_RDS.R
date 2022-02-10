@@ -1,27 +1,41 @@
-#-------------------------------------------------------#
-#                                                       #
-#                                                       #
-#                                                       #
-#                balisage_RDS.R                         #
-#                                                       #
-#                                                       #
-#                                                       #
-#-------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                                                                           #
+#                                                                                           #
+#                balisage_RDS.R                                                             #
+#                                                                                           #
+#                                                                                           #
+## Contexte :                                                                               #
+#  # Fonction qui scan un repertoire contenant des .RDS                                     #
+#  # Appel la fonction de decoupage en table simples/multiples : split_rds()                #      
+#  # En sortie : Ecrit les tables simples/multiples sous postgres : pstgr_write_table()     #
+#                                                                                           #
+## Description parameters :                                                                 #
+#  # referentiel : chemin complet du referentiel de comptage (ex: "file.csv")               #
+#  # name_id,                                                                               #
+#  # repertoire_in,                                                                         #
+#  # repertoire_out,                                                                        #
+#  # nom_schema,                                                                            #
+#  # nom_table                                                                              #
+#                                                                                           #
+#                                                                                           #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
-## Contexte : 
-  # Fonction qui scan un repertoire contenant des .RDS 
-  # Appel la fonction de decoupage en table simples/multiples : split_rds()
-  # En sortie : Ecrit les tables simples/multiples sous postgres : pstgr_write_table()
-
-## Description parameters : 
-  # referentiel : chemin complet du referentiel de comptage (ex: "file.csv") 
-  # name_id, 
-  # repertoire_in, 
-  # repertoire_out, 
-  # nom_schema, 
-  # nom_table
 
 balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out= NULL, nom_schema, nom_table){
+  
+  temps <- as.data.frame(Sys.time())
+  write.table(temps,file=paste0(chemin_tps_traitment,'Balisage_',nom_table,'_debut.txt'), col.names = TRUE, row.names = FALSE)  
+  
+  
+  # 0 - Creation d'une log 
+  journal(paste0('Balisage_',nom_table),paste0('Balisage_',nom_table))
+  print(as.character(Sys.time()))
+  
+  
+  
+  
   # lecture referentiel valide en INPUT
   referentiel <- read.csv2(referentiel)
   
@@ -63,4 +77,14 @@ balisage_RDS <- function(referentiel, name_id, repertoire_in, repertoire_out= NU
     }
     
   }else stop("Aucun fichier RDS en sortie")
+  
+  ## on ferme la lig
+  sink()
+  
+  
+  # fin timer du programme
+  temps <- as.data.frame(Sys.time())
+  write.table(temps,file=paste0(chemin_tps_traitment,'Balisage_',nom_table,'_fin.txt'), col.names = TRUE, row.names = FALSE)  
+  
+  
 }

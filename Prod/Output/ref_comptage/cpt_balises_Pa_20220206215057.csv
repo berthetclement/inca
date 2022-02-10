@@ -1,5 +1,0 @@
-"Parent";"Nom_balise";"nb_fic";"nb_tot_agg";"min";"max";"type_balise";"type_balise_old";"Nouvelle_valeur"
-"DescriptorName";"String";1;553;1;1;"simple_chemin";"simple_chemin";"NON"
-"DescriptorReferredTo";"DescriptorUI";1;553;1;1;"simple_chemin";"simple_chemin";"NON"
-"RecordName";"String";1;36399;1;2466;"multiple";"multiple";"NON"
-"Substance";"RecordUI";1;36399;1;2466;"multiple";"multiple";"NON"

@@ -50,15 +50,14 @@ DIR_OUTPUT = "./Prod/Output/"
 
 
 # chemin suivi
-#DIR_OUTPUT_SUIVI = paste0(DIR_OUTPUT,"suivi/")
 DIR_OUTPUT_SUIVI = DIR_OUTPUT
 
 
 # chemin temps traitement ----
 chemin_tps_traitment <- paste0(DIR_OUTPUT, "temps_traitement/")
+CHEMIN_TPS_TRAITEMENT <- paste0(DIR_OUTPUT, "temps_traitement/")
 
 # chemin INPUT ----
-chemin_input <- "Prod/Input/"
 DIR_INPUT_DATA = "./Prod/Input/"
 #  chemin scripts ----
 chemin_script <- "Prod/Script/"
@@ -74,30 +73,17 @@ chemin_output_ref_comptage <- paste0(DIR_OUTPUT, "ref_comptage/")
 
 # PUBMED ----
 
-# PUBMED
 NOM_BALISE_ID_PUBMED = "PMID"
 NOM_PARENT_ID_PUBMED = "MedlineCitation"
 DIR_OUTPUT_RDS_PUBMED = paste0(DIR_OUTPUT, "pubmed_rds/")
 FILE_SUIVI_PUBMED = "suivi_pubmed.csv"
+nom_ref_cpt_pubmed <- "cpt_balises_pubmed"
+PATH_REF_CPT_PUBMED <- paste0(chemin_output_ref_comptage, nom_ref_cpt_pubmed, '.csv')
 
-
-# chemin output export RDS ----
-#chemin_pubmed_rds <- paste0(DIR_OUTPUT, "pubmed_rds/")
 
 #  03-definition_fonction_fetchAPI ----
   # nombre de publications xml par fichier en sortie (le pas)
-step_by_id = 999# 999
-
-  # index positions pour les id
-start_index_id = 1
-stop_index_id =  114000 ## ne pas mettre de paramètre de nombre max de fichier à récupérer
-
-
-#  05-definition_fonction_test_id_fetch ----
-nom_fichier_suivi_id <- "Suivi_id_PUBMED.csv"
-
-#  07-definition_foctions_check_xml ----
-#nom_fichier_suivi_nct <- "Suivi_id_PUBMED_NCT.csv"
+step_by_id = 499# 999
 
 
 #-------------------------------------------------------#
@@ -142,24 +128,9 @@ BLOCK_SIZE <- 1000
   DIR_OUTPUT_RDS_DESC = paste0(DIR_OUTPUT, "desc_rds/")
   FILE_SUIVI_DESC = "suivi_desc.csv"
   FILE_INPUT_DESC = "desc2022.xml"
-
-  # MESH ----
-  # fichiers mesh test 
-  #nom_fic_mesh <- "desc2022.xml"
-
-# chemin ouptut des fichiers xml splité 
-#chemin_input_xml_Mesh_split <- paste0(DIR_INPUT_DATA,"/XML_Mesh_Splitted/")
-
-# chemin output des RDS ----
-#chemin_output_Mesh_rds <- paste0(DIR_OUTPUT, "mesh_rds/")
-
-# prefix des fichiers RDS
-nom_fich_Mesh_rds <- "mesh_lot_"
-
-# éléments pour identifier l'identifiant du Mesh
-  #parent_id_Mesh <- "DescriptorRecord"
-  #bal_id_Mesh <- "DescriptorUI"
-  #name_id_Mesh <- "id_mesh"
+  nom_ref_cpt_desc <- "cpt_balises_desc"
+  PATH_REF_CPT_DESC <- paste0(chemin_output_ref_comptage, nom_ref_cpt_desc, '.csv')
+ 
 
 
 #-------------------------------------------------------#
@@ -175,24 +146,9 @@ nom_fich_Mesh_rds <- "mesh_lot_"
   DIR_OUTPUT_RDS_SUPP = paste0(DIR_OUTPUT, "supp_rds/")
   FILE_SUIVI_SUPP = "suivi_supp.csv"
   FILE_INPUT_SUPP = "supp2022.xml"
-  
-# fichiers supp test 
-#nom_fic_Supp <- "supp2022.xml"
+  nom_ref_cpt_supp <- "cpt_balises_Supp"
+  PATH_REF_CPT_SUPP <- paste0(chemin_output_ref_comptage, nom_ref_cpt_supp, '.csv') 
 
-# chemin ouptut des fichiers xml splité 
-#chemin_input_xml_Supp_split <- paste0(DIR_INPUT_DATA,"XML_Supp_Splitted/")
-
-# chemin output des RDS ----
-#chemin_output_Supp_rds <- paste0(DIR_OUTPUT, "supp_rds/")
-
-# prefix des fichiers RDS
-#nom_fich_Supp_rds <- "supp_lot_"
-
-# éléments pour identifier l'identifiant du Supp
-#parent_id_Supp <- "SupplementalRecord"
-#bal_id_Supp <- "SupplementalRecordUI"
-#name_id_Supp <- "id_supp"
-  
 
 #-------------------------------------------------------#
 #                                                       #
@@ -200,31 +156,15 @@ nom_fich_Mesh_rds <- "mesh_lot_"
 #                                                       #
 #-------------------------------------------------------#
 
-# PA
-DIR_INPUT_XML_PA = paste0(DIR_INPUT_DATA, "XML_Pa_Splitted/")
-NOM_BALISE_ID_PA = "DescriptorUI"
-NOM_PARENT_ID_PA = "DescriptorReferredTo"
-DIR_OUTPUT_RDS_PA = paste0(DIR_OUTPUT, "pa_rds/")
-FILE_SUIVI_PA = "suivi_pa.csv"
-FILE_INPUT_PA = "pa2022.xml"
-
-# fichiers supp test 
-#nom_fic_Pa <- "pa2022.xml"
-
-# chemin ouptut des fichiers xml splité 
-#chemin_input_xml_Pa_split <- paste0(DIR_INPUT_DATA,"XML_Pa_Splitted/")
-
-# chemin output des RDS ----
-#chemin_output_Pa_rds <- paste0(DIR_OUTPUT, "pa_rds/")
-
-# prefix des fichiers RDS
-#nom_fich_Pa_rds <- "pa_lot_"
-
-# éléments pour identifier l'identifiant du Pa
-#parent_id_Pa <- "DescriptorReferredTo"
-#bal_id_Pa <- "DescriptorUI"
-#name_id_Pa <- "id_pa"
-  
+  # PA
+  DIR_INPUT_XML_PA = paste0(DIR_INPUT_DATA, "XML_Pa_Splitted/")
+  NOM_BALISE_ID_PA = "DescriptorUI"
+  NOM_PARENT_ID_PA = "DescriptorReferredTo"
+  DIR_OUTPUT_RDS_PA = paste0(DIR_OUTPUT, "pa_rds/")
+  FILE_SUIVI_PA = "suivi_pa.csv"
+  FILE_INPUT_PA = "pa2022.xml"
+  nom_ref_cpt_pa <- "cpt_balises_Pa"
+  PATH_REF_CPT_PA <- paste0(chemin_output_ref_comptage, nom_ref_cpt_pa, '.csv')
 
 #-------------------------------------------------------#
 #                                                       #
@@ -232,31 +172,15 @@ FILE_INPUT_PA = "pa2022.xml"
 #                                                       #
 #-------------------------------------------------------#
 
-# QUAL
-DIR_INPUT_XML_QUAL = paste0(DIR_INPUT_DATA, "XML_Qual_Splitted/")
-NOM_BALISE_ID_QUAL = "QualifierUI"
-NOM_PARENT_ID_QUAL = "QualifierRecord"
-DIR_OUTPUT_RDS_QUAL = paste0(DIR_OUTPUT, "qual_rds/")
-FILE_SUIVI_QUAL = "suivi_qual.csv"
-FILE_INPUT_QUAL = "qual2022.xml"
-
-# fichiers supp test 
-#nom_fic_Qual <- "qual2022.xml"
-
-# chemin ouptut des fichiers xml splité 
-#chemin_input_xml_Qual_split <- paste0(DIR_INPUT_DATA,"XML_Qual_Splitted/")
-
-# chemin output des RDS ----
-#chemin_output_Qual_rds <- paste0(DIR_OUTPUT, "Qual_rds/")
-
-# prefix des fichiers RDS
-#nom_fich_Qual_rds <- "qual_lot_"
-
-# éléments pour identifier l'identifiant du Qual
-#parent_id_Qual <- "QualifierRecord"
-#bal_id_Qual <- "QualifierUI"
-#name_id_Qual <- "id_qual"
-
+  # QUAL
+  DIR_INPUT_XML_QUAL = paste0(DIR_INPUT_DATA, "XML_Qual_Splitted/")
+  NOM_BALISE_ID_QUAL = "QualifierUI"
+  NOM_PARENT_ID_QUAL = "QualifierRecord"
+  DIR_OUTPUT_RDS_QUAL = paste0(DIR_OUTPUT, "qual_rds/")
+  FILE_SUIVI_QUAL = "suivi_qual.csv"
+  FILE_INPUT_QUAL = "qual2022.xml"
+  nom_ref_cpt_qual <- "cpt_balises_qual"
+  PATH_REF_CPT_QUAL <- paste0(chemin_output_ref_comptage, nom_ref_cpt_qual, '.csv')
 
 
 #-------------------------------------------------------#
@@ -270,36 +194,6 @@ nom_fichier_mesh_trees <- "mtrees2022.bin"
 
 # chemin output mesh trees ----
 chemin_output_trees <- paste0(DIR_OUTPUT, "mesh_trees/")
-
-
-
-#-------------------------------------------------------#
-#                                                       #
-#                    REF_COMPTAGE                       #
-#                                                       #
-#-------------------------------------------------------#
-
-# REF_COMPTAGE ----
-
-## PUBMED
-nom_ref_cpt_pubmed <- "cpt_balises_pubmed"
-path_ref_cpt_pubmed <- paste0(chemin_output_ref_comptage, nom_ref_cpt_pubmed, '.csv')
-
-## DESC 
-nom_ref_cpt_desc <- "cpt_balises_desc"
-path_ref_cpt_desc <- paste0(chemin_output_ref_comptage, nom_ref_cpt_desc, '.csv')
-
-## SUPP 
-nom_ref_cpt_supp <- "cpt_balises_Supp"
-path_ref_cpt_supp <- paste0(chemin_output_ref_comptage, nom_ref_cpt_supp, '.csv')
-
-## PA 
-nom_ref_cpt_pa <- "cpt_balises_Pa"
-path_ref_cpt_pa <- paste0(chemin_output_ref_comptage, nom_ref_cpt_pa, '.csv')
-
-## QUAL 
-nom_ref_cpt_qual <- "cpt_balises_qual"
-path_ref_cpt_qual <- paste0(chemin_output_ref_comptage, nom_ref_cpt_qual, '.csv')
 
 
 

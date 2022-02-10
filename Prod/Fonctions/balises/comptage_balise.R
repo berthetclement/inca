@@ -21,6 +21,16 @@
 
 comptage_balise <- function(nom_chemin,id_fic,nom_output) {
 
+  temps <- as.data.frame(Sys.time())
+  write.table(temps,file=paste0(chemin_tps_traitment,'Comptage_balise_',nom_output,'_debut.txt'), col.names = TRUE, row.names = FALSE)  
+  
+  
+  # 0 - Creation d'une log 
+  journal(paste0('Comptage_balise_',nom_output),paste0('Comptage_balise_',nom_output))
+  print(as.character(Sys.time()))
+  
+  
+  
   #### Comptage des balises  
   
   ## on liste l'ensemble des fichiers RDS présents dans le repertoire
@@ -122,6 +132,16 @@ comptage_balise <- function(nom_chemin,id_fic,nom_output) {
               paste0(chemin_output_ref_comptage,nom_output,".csv"), 
               row.names = FALSE, 
               sep = ";")
+  
+  ## on ferme la lig
+  sink()
+  
+  
+  # fin timer du programme
+  temps <- as.data.frame(Sys.time())
+  write.table(temps,file=paste0(chemin_tps_traitment,'Comptage_balise_',nom_output,'_fin.txt'), col.names = TRUE, row.names = FALSE)  
+  
+  
 }
 
 

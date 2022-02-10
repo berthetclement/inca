@@ -10,6 +10,20 @@
 
 traitements_xml_by_type <- function(type,file_input){
   
+  ## on trace le début du traitement
+  temps <- as.data.frame(Sys.time())
+  write.table(temps,file=paste0(CHEMIN_TPS_TRAITEMENT,paste0('Traitements_fichiers_XML_',str_to_upper(type),'_heure_debut.txt')), col.names = TRUE, row.names = FALSE)
+  
+  ## ouverture de la log
+  journal(paste0("Traitements_fichiers_XML_",str_to_upper(type)),paste0("Traitements_fichiers_XML_",str_to_upper(type)))
+  
+  print(paste0("Lancement Traitements_fichiers_XML_",str_to_upper(type)))
+  print("Heure lancement: ")
+  print(as.character(Sys.time()))
+  
+  
+  ## récupération des paramètres associés au fichier à traité
+  
   dir_xml_splitted = get(paste("DIR_INPUT_XML", toupper(type), sep = "_"))
   nom_parent_id = get(paste("NOM_PARENT_ID", toupper(type), sep = "_"))
   nom_balise_id = get(paste("NOM_BALISE_ID", toupper(type), sep = "_"))
@@ -19,16 +33,24 @@ traitements_xml_by_type <- function(type,file_input){
   file_suivi = get(paste("FILE_SUIVI", toupper(type), sep = "_"))
   check_function = get(paste("check_data", type, sep = "_"))
   
+  ## on ré-initialise les répertoires et le fichier de suivi
+  
   print(paste("Suppression des fichiers dans le répertoire : ", dir_xml_splitted))
   do.call(file.remove, list(list.files(dir_xml_splitted, full.names = TRUE)))
+  
   print(paste("Suppression des fichiers dans le répertoire : ", dir_output_rds))
   do.call(file.remove, list(list.files(dir_output_rds, full.names = TRUE)))
+  
+  if(file.exists(paste0(dir_output_suivi, file_suivi))){
+    print(paste("Suppression du fichier de suivi : ", file_suivi)) 
+    file.remove(paste0(dir_output_suivi, file_suivi))
+  }
+  
   print("Création des fichiers xml splittés")
   run_xml_splitter(DIR_INPUT_DATA, file_input, dir_xml_splitted)
   
   lst_xml_splitted = list.files(dir_xml_splitted)
-  #lst_xml_splitted = lst_xml_splitted[1:2]
-  
+
   lapply(1:length(lst_xml_splitted)
          , FUN = function(idx){
 					           file_to_treat = lst_xml_splitted[idx]
@@ -38,4 +60,12 @@ traitements_xml_by_type <- function(type,file_input){
                               }
   )
 
+  ## on ferme la log
+  sink()
+  
+  ## on trace la fin du traitement
+  temps <- as.data.frame(Sys.time())
+  write.table(temps,file=paste0(CHEMIN_TPS_TRAITEMENT,paste0('Traitements_fichiers_XML_',str_to_upper(type),'_heure_fin.txt')), col.names = TRUE, row.names = FALSE)
+  
+  
 }
