@@ -285,6 +285,13 @@ write.table(temps,file=paste0(chemin_tps_traitment,'08-Traitements_MESH_TREES_he
 
 source(paste0(chemin_script, "03-Traitements_MESH_TREES.R"))
 
+## test SLE
+RPostgreSQL::dbWriteTable(con, 
+                          name=c("pubmed_tmp", "tree"), 
+                          value = fic_mesh_tree, 
+                          append = TRUE, 
+                          row.names=FALSE)
+
 temps <- as.data.frame(Sys.time())
 write.table(temps,file=paste0(chemin_tps_traitment,'08-Traitements_MESH_TREES_heure_fin.txt'), col.names = TRUE, row.names = FALSE)
 
