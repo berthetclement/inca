@@ -131,11 +131,11 @@ pstgr_write_table_ref_vide <- function(nom_schema, nom_table){
   # noms en minuscule
   names(df_mult) <- tolower(names(df_mult))
   
-  nom_table <- paste0(nom_table, "_mult")
+  nom_table_mult <- paste0(nom_table, "_mult")
   # Ecriture requetes
-  cle_id_ref_mult <- paste("cle", "id", nom_table, "mult",sep="_")
-  cle_prim_id_ref_mult <- paste("pk", "id", nom_table, "mult",sep="_")
-  cle_id_ref_mult_bis <- paste("pk", "id", nom_table, "mult", "id",sep="_")
+  cle_id_ref_mult <- paste("cle", "id", nom_table_mult, sep="_")
+  cle_prim_id_ref_mult <- paste("pk", "id", nom_table_mult, sep="_")
+  cle_id_ref_mult_bis <- paste("pk", "id", nom_table_mult, "id", sep="_")
   
   requete_des_droits <- paste0("GRANT SELECT ON TABLE ",
                                "\"",
@@ -143,7 +143,7 @@ pstgr_write_table_ref_vide <- function(nom_schema, nom_table){
                                "\"",
                                ".",
                                "\"",
-                               nom_table,
+                               nom_table_mult,
                                "\"",
                                ' TO "INC_U_PRI";')
   requete_creation_index <- paste0("CREATE INDEX IF NOT EXISTS ",
@@ -156,7 +156,7 @@ pstgr_write_table_ref_vide <- function(nom_schema, nom_table){
                                    "\"",
                                    ".",
                                    "\"",
-                                   nom_table,
+                                   nom_table_mult,
                                    "\"",
                                    " (",
                                    "\"",
@@ -173,7 +173,7 @@ pstgr_write_table_ref_vide <- function(nom_schema, nom_table){
                                        "\"",
                                        ".",
                                        "\"",
-                                       nom_table,
+                                       nom_table_mult,
                                        "\"",
                                        " (",
                                        "\"",
@@ -186,7 +186,7 @@ pstgr_write_table_ref_vide <- function(nom_schema, nom_table){
                                  "\"",
                                  ".",
                                  "\"",
-                                 nom_table,
+                                 nom_table_mult,
                                  "\"",
                                  " ADD CONSTRAINT ",
                                  cle_prim_id_ref_mult,
@@ -197,7 +197,7 @@ pstgr_write_table_ref_vide <- function(nom_schema, nom_table){
                                  ",\"chemin\");")
   
   # Execution requetes
-  dbWriteTable(con, name=c(nom_schema, nom_table), overwrite=TRUE, value = df_mult, row.names=FALSE)
+  dbWriteTable(con, name=c(nom_schema, nom_table_mult), overwrite=TRUE, value = df_mult, row.names=FALSE)
   
   dbGetQuery(con, requete_des_droits)
   dbGetQuery(con, requete_creation_index)
