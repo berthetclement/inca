@@ -121,7 +121,7 @@ BLOCK_SIZE <- 1000
 #-------------------------------------------------------#
 
 
-  # DESC
+  # DESC ----
   DIR_INPUT_XML_DESC = paste0(DIR_INPUT_DATA, "XML_Desc_Splitted/")
   NOM_BALISE_ID_DESC = "DescriptorUI"
   NOM_PARENT_ID_DESC = "DescriptorRecord"
@@ -130,6 +130,8 @@ BLOCK_SIZE <- 1000
   FILE_INPUT_DESC = "desc2022.xml"
   nom_ref_cpt_desc <- "cpt_balises_desc"
   PATH_REF_CPT_DESC <- paste0(chemin_output_ref_comptage, nom_ref_cpt_desc, '.csv')
+  
+    
  
 
 
@@ -139,7 +141,7 @@ BLOCK_SIZE <- 1000
 #                                                       #
 #-------------------------------------------------------#
 
-  # SUPP
+  # SUPP ----
   DIR_INPUT_XML_SUPP = paste0(DIR_INPUT_DATA, "XML_Supp_Splitted/")
   NOM_BALISE_ID_SUPP = "SupplementalRecordUI"
   NOM_PARENT_ID_SUPP = "SupplementalRecord"
@@ -156,7 +158,7 @@ BLOCK_SIZE <- 1000
 #                                                       #
 #-------------------------------------------------------#
 
-  # PA
+  # PA ----
   DIR_INPUT_XML_PA = paste0(DIR_INPUT_DATA, "XML_Pa_Splitted/")
   NOM_BALISE_ID_PA = "DescriptorUI"
   NOM_PARENT_ID_PA = "DescriptorReferredTo"
@@ -172,7 +174,7 @@ BLOCK_SIZE <- 1000
 #                                                       #
 #-------------------------------------------------------#
 
-  # QUAL
+  # QUAL ----
   DIR_INPUT_XML_QUAL = paste0(DIR_INPUT_DATA, "XML_Qual_Splitted/")
   NOM_BALISE_ID_QUAL = "QualifierUI"
   NOM_PARENT_ID_QUAL = "QualifierRecord"

@@ -123,7 +123,7 @@ pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
   # simple / multiple a partir du referentiel 
-pstgr_write_table_desc_vide(ref_comptage = PATH_REF_CPT_DESC, nom_schema = "pubmed_tmp", nom_table = "desc")
+pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp", nom_table = "desc")
 
 ## Traitements des fichiers RDS ----
 balisage_RDS(referentiel = PATH_REF_CPT_DESC, 
@@ -166,7 +166,7 @@ pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_supp_vide(ref_comptage = PATH_REF_CPT_SUPP, nom_schema = "pubmed_tmp", nom_table = "supp")
+pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp", nom_table = "supp")
 
     
 ## Traitements des fichiers RDS ----
@@ -211,8 +211,7 @@ pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_pa_vide(ref_comptage = PATH_REF_CPT_PA,
-                          nom_schema = "pubmed_tmp",
+pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp",
                           nom_table = "pa")
 
 
@@ -259,8 +258,7 @@ pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_qual_vide(ref_comptage = PATH_REF_CPT_QUAL,
-                            nom_schema = "pubmed_tmp",
+pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp",
                             nom_table = "qual")
 
 
