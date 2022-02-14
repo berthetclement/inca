@@ -1,0 +1,6 @@
+[1] "Lancement de la suppression des publications qui ne sont plus a charger: 2022-02-13 18:56:46"
+Error in gzfile(file, "rb") : cannot open the connection
+In addition: Warning message:
+In gzfile(file, "rb") :
+  cannot open compressed file './Prod/Output/pubmed_rds/NA.RDS', probable reason 'No such file or directory'
+integer(0)

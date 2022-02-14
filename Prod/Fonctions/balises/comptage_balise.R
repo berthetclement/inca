@@ -1,34 +1,38 @@
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   comptage_balise                                         #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  # Cette fonction a pour but de creer le referentiel qui permettra de definir les         #
+#  #  balises simples et les balises multiples.                                             #      
+#  # Les couples parents/balises sont prequalifies pour faciliter le travail utilisateurs   #                                              #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #  nom_chemin  : chemin du repertoire ou sont stockes les RDS issus des XML              #
+#  #  id_fic      : identifiant des donnees analysees                                       #
+#  #  nom_output  : nom du fichier de sortie                                                #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   # un fichier csv avec les differents elements pour qualifier les balises simples/mult   #                                                                                   #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
-#-------------------------------------------------------#
-#                                                       #
-#                                                       #
-#                                                       #
-#                comptage_balise.R                      #
-#                                                       #
-#                                                       #
-#                                                       #
-#-------------------------------------------------------#
-
-## Contexte : 
-# Fonction Fabrique le referentiel (pubmed/desc/supp/...)
-# Scan un repertoire contenant les .RDS  
-# En sortie : Ecrit le referentiel avec les types de balises identifiees
-
-## Description parameters : 
-# nom_chemin,
-# id_fic,
-# nom_output
 
 comptage_balise <- function(nom_chemin,id_fic,nom_output) {
 
-  temps <- as.data.frame(Sys.time())
-  write.table(temps,file=paste0(chemin_tps_traitment,'Comptage_balise_',nom_output,'_debut.txt'), col.names = TRUE, row.names = FALSE)  
+  # On trace l'heure du début de l'étape  
+  heure_debut <- Sys.time() 
   
   
   # 0 - Creation d'une log 
   journal(paste0('Comptage_balise_',nom_output),paste0('Comptage_balise_',nom_output))
-  print(as.character(Sys.time()))
-  
+
+  print(paste0("Lancement de la partie qualification des balises ",nom_output," :",Sys.time()))
   
   
   #### Comptage des balises  
@@ -75,7 +79,6 @@ comptage_balise <- function(nom_chemin,id_fic,nom_output) {
   nb_element <- max(res_tot_agg[(res_tot_agg$min == 1 & res_tot_agg$max == 1),]$nb_tot_agg)
   
   ## on pre-qualifie les balises
-  # [ajout] "NA" au lieu de NA
   res_tot_agg$type_balise <- "NA"
   ## les balises simples 
   ## on initialise à balise simple chemin
@@ -108,7 +111,7 @@ comptage_balise <- function(nom_chemin,id_fic,nom_output) {
   #### on identifie les nouvelles balises   
   
   ## on lit le fichier de référence
-  liste_balise_hist <- read.csv2(paste0(chemin_output_ref_comptage,nom_output,".csv"))  
+  liste_balise_hist <- read.csv2(paste0(CHEMIN_OUTPUT_REF_COMPTAGE,nom_output,".csv"))  
   
   ## on ne garde que les données qui nous inétresse
   liste_balise_hist <- liste_balise_hist %>% select(Parent,Nom_balise,type_balise) %>%
@@ -124,23 +127,27 @@ comptage_balise <- function(nom_chemin,id_fic,nom_output) {
   
   ## on sauvegarde le résultat
   ## on archive l'ancienne version
-  file.rename(from = paste0(chemin_output_ref_comptage, nom_output,".csv"), 
-              to = paste0(chemin_output_ref_comptage, nom_output,"_",format(Sys.time(),"%Y%m%d%H%M%S"),".csv"))
+  file.rename(from = paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_output,".csv"), 
+              to = paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_output,"_",format(Sys.time(),"%Y%m%d%H%M%S"),".csv"))
   
   ## on exporte la nouvelle
   write.table(res_tot_agg, 
-              paste0(chemin_output_ref_comptage,nom_output,".csv"), 
+              paste0(CHEMIN_OUTPUT_REF_COMPTAGE,nom_output,".csv"), 
               row.names = FALSE, 
               sep = ";")
   
-  ## on ferme la lig
+  ##
+  print(paste0("Fin de la partie qualification des balises ",nom_output," :",Sys.time()))
+  
+  
+  ## on ferme la log
   sink()
   
-  
   # fin timer du programme
-  temps <- as.data.frame(Sys.time())
-  write.table(temps,file=paste0(chemin_tps_traitment,'Comptage_balise_',nom_output,'_fin.txt'), col.names = TRUE, row.names = FALSE)  
-  
+  df_temp <- calcul_temps_trt(fullname_file = paste0(CHEMIN_TPS_TRAITEMENT,FILE_TPS_TRAITEMENT),
+                              label = paste0("Qualification des balises ",nom_output),
+                              heure_debut = heure_debut
+  )   
   
 }
 

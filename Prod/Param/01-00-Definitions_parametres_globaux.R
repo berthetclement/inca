@@ -20,6 +20,7 @@ library(dplyr)
 library(tidyr)
 # library(glue)
 library(stringr)
+library(lubridate)
 
 
 # LIBRAIRIES POSTGRES----
@@ -56,6 +57,7 @@ DIR_OUTPUT_SUIVI = DIR_OUTPUT
 # chemin temps traitement ----
 chemin_tps_traitment <- paste0(DIR_OUTPUT, "temps_traitement/")
 CHEMIN_TPS_TRAITEMENT <- paste0(DIR_OUTPUT, "temps_traitement/")
+FILE_TPS_TRAITEMENT <- "temps_trt.csv"
 
 # chemin INPUT ----
 DIR_INPUT_DATA = "./Prod/Input/"
@@ -63,8 +65,8 @@ DIR_INPUT_DATA = "./Prod/Input/"
 chemin_script <- "Prod/Script/"
 
 # chemin refs comptage balises ----
-chemin_output_ref_comptage <- paste0(DIR_OUTPUT, "ref_comptage/")
-
+#chemin_output_ref_comptage <- paste0(DIR_OUTPUT, "ref_comptage/")
+CHEMIN_OUTPUT_REF_COMPTAGE <- paste0(DIR_OUTPUT, "ref_comptage/")
 #-------------------------------------------------------#
 #                                                       #
 #                    PUBMED                             #
@@ -78,7 +80,7 @@ NOM_PARENT_ID_PUBMED = "MedlineCitation"
 DIR_OUTPUT_RDS_PUBMED = paste0(DIR_OUTPUT, "pubmed_rds/")
 FILE_SUIVI_PUBMED = "suivi_pubmed.csv"
 nom_ref_cpt_pubmed <- "cpt_balises_pubmed"
-PATH_REF_CPT_PUBMED <- paste0(chemin_output_ref_comptage, nom_ref_cpt_pubmed, '.csv')
+PATH_REF_CPT_PUBMED <- paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_ref_cpt_pubmed, '.csv')
 
 
 #  03-definition_fonction_fetchAPI ----
@@ -129,7 +131,7 @@ BLOCK_SIZE <- 1000
   FILE_SUIVI_DESC = "suivi_desc.csv"
   FILE_INPUT_DESC = "desc2022.xml"
   nom_ref_cpt_desc <- "cpt_balises_desc"
-  PATH_REF_CPT_DESC <- paste0(chemin_output_ref_comptage, nom_ref_cpt_desc, '.csv')
+  PATH_REF_CPT_DESC <- paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_ref_cpt_desc, '.csv')
   
     
  
@@ -149,7 +151,7 @@ BLOCK_SIZE <- 1000
   FILE_SUIVI_SUPP = "suivi_supp.csv"
   FILE_INPUT_SUPP = "supp2022.xml"
   nom_ref_cpt_supp <- "cpt_balises_Supp"
-  PATH_REF_CPT_SUPP <- paste0(chemin_output_ref_comptage, nom_ref_cpt_supp, '.csv') 
+  PATH_REF_CPT_SUPP <- paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_ref_cpt_supp, '.csv') 
 
 
 #-------------------------------------------------------#
@@ -166,7 +168,7 @@ BLOCK_SIZE <- 1000
   FILE_SUIVI_PA = "suivi_pa.csv"
   FILE_INPUT_PA = "pa2022.xml"
   nom_ref_cpt_pa <- "cpt_balises_Pa"
-  PATH_REF_CPT_PA <- paste0(chemin_output_ref_comptage, nom_ref_cpt_pa, '.csv')
+  PATH_REF_CPT_PA <- paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_ref_cpt_pa, '.csv')
 
 #-------------------------------------------------------#
 #                                                       #
@@ -182,7 +184,7 @@ BLOCK_SIZE <- 1000
   FILE_SUIVI_QUAL = "suivi_qual.csv"
   FILE_INPUT_QUAL = "qual2022.xml"
   nom_ref_cpt_qual <- "cpt_balises_qual"
-  PATH_REF_CPT_QUAL <- paste0(chemin_output_ref_comptage, nom_ref_cpt_qual, '.csv')
+  PATH_REF_CPT_QUAL <- paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_ref_cpt_qual, '.csv')
 
 
 #-------------------------------------------------------#
@@ -216,10 +218,10 @@ con <- dbConnect(drv_generic, config$conn, port=config$port, user=config$user, p
 
 
 
-
-
-
-
-
-
-
+LST_SIMPLE_DATE_BDD_DATE = c("simple_date")
+LST_SIMPLE_DATE_BDD_CHARACTER = c("simple_PubDate")
+LST_SIMPLE_TAG = c("simple_chemin")
+LST_ERRONEE = c("simple_erronnee", "multiple_erronnee")
+LST_MULT = c("multiple","simple_non_significative") 
+LST_SIMPLE_CALC = c("balises_error")
+LST_COLS_MULT = c("Nom_balise", "Parent", "Chemin", "Profondeur", "Valeur", "Attribut")

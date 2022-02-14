@@ -1,4 +1,27 @@
-## Ecrit dans un data frame les différents éléments d'une balise.
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   create_df_tag_attributes                                #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #  Cette fonction ecrit dans un data frame les différents éléments d'une balise.         #
+#  #  Elle intervient au point le plus profond de l'arborescence                            #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #  tag_to_add : balise a analyser                                                        #
+#  #  tag_depth  : profondeur ou est positionnee la balise                                  #
+#  #                                                                                        #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   #  Un dataframe avec les différentes informations disponibles concernant la balise      #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
+
 
 
 create_df_tag_attributes <- function(tag_to_add, tag_depth){

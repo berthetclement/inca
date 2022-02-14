@@ -44,27 +44,23 @@ sapply(file_sources,source)
 
     # 3.2.1 : les publications non intégrées
     liste_id_a_charger <- identification_id_a_charger()
-    print("Nombre de publications restant à intégrer :")
-    print(length(liste_id_a_charger))
+
     ## si > 0 : on lance le script de relance ci-dessous :
-    
-    # [ajout] le test et condition si lancement
     if(length(liste_id_a_charger) >0)
       Lancement_PUBMED(stop_index_id = 999999,reprise = TRUE)
   
     # 3.2.2 : les publications qui ne sont plus présentes
-    liste_plus_present <- identification_id_plus_present()
-    print("Nombre de publications qui ne sont plus présentes :")
-    print(length(liste_plus_present))
+      liste_plus_present <- identification_id_plus_present()
+
     ## si > 0 : on lance le script de nettoyage ci-dessous :
-    suppression_id_plus_acharger()
+      suppression_id_plus_acharger()
   
     ## 3.2.3 : les publications en doublons
-    liste_doublons <- identification_id_doublons()
-    print("Nombre de publications chargées plusieurs fois:")
-    print(nrow(liste_doublons))
+      liste_doublons <- identification_id_doublons()
+
     ## si > 0 : on lance le script de nettoyage ci-dessous :
-    suppression_en_doublons()
+      suppression_en_doublons()
+      
   # 3.3 on sort les informations pour identifier les balises simples ou à retravailler
     comptage_balise (nom_chemin = DIR_OUTPUT_RDS_PUBMED,
                      id_fic =  "id_pubmed",
@@ -74,23 +70,23 @@ sapply(file_sources,source)
     ## creation du schema temp + structure de la table
     
     ## 1 - INIT du schema 
-    pstgr_init_schema("pubmed_tmp")
+    #pstgr_init_schema("pubmed_tmp")
     
     ## 2 - Creation tables vides 
       # simple / multiple a partir du referentiel 
-    pstgr_write_table_pubmed_vide(ref_comptage = PATH_REF_CPT_PUBMED, nom_schema = "pubmed_tmp", nom_table = "pubmed")
+    #pstgr_write_table_pubmed_vide(ref_comptage = PATH_REF_CPT_PUBMED, nom_schema = "pubmed_tmp", nom_table = "pubmed")
     
     ## crée un pgm/fonction qui test si le schema temp existe et qui crée les tables
     
     
     ## Traitements des fichiers RDS ----
-    balisage_RDS(referentiel = PATH_REF_CPT_PUBMED, 
-                 name_id = "id_pubmed",
-                 repertoire_in = DIR_OUTPUT_RDS_PUBMED, # [TEST] "save_RDS/"
-                 repertoire_out = chemin_output_balises, # parametre deprecie
-                 nom_schema = "pubmed_tmp", 
-                 nom_table = "pubmed") 
-
+    #balisage_RDS(referentiel = PATH_REF_CPT_PUBMED, 
+     #            name_id = "id_pubmed",
+      ##           repertoire_in = DIR_OUTPUT_RDS_PUBMED, # [TEST] "save_RDS/"
+        #         repertoire_out = chemin_output_balises, # parametre deprecie
+         #        nom_schema = "pubmed_tmp", 
+          #       nom_table = "pubmed") 
+    balisage_RDS_candidate("pubmed_tmp", "pubmed")
 
 
             
@@ -119,20 +115,20 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_DESC,
 # 4.4 on sépare les données et on les remonte sous PostGre
 
 ## 1 - INIT du schema 
-pstgr_init_schema("pubmed_tmp")
+#pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
   # simple / multiple a partir du referentiel 
-pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp", nom_table = "desc")
+#pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp", nom_table = "desc")
 
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = PATH_REF_CPT_DESC, 
-             name_id = "id_desc", 
-             repertoire_in = DIR_OUTPUT_RDS_DESC, 
-             repertoire_out = "Prod/Output/balises_rds/desc/",
-             nom_schema = "pubmed_tmp", 
-             nom_table = "desc")
-
+#balisage_RDS(referentiel = PATH_REF_CPT_DESC, 
+#             name_id = "id_desc", 
+#             repertoire_in = DIR_OUTPUT_RDS_DESC, 
+#             repertoire_out = "Prod/Output/balises_rds/desc/",
+#             nom_schema = "pubmed_tmp", 
+#             nom_table = "desc")
+balisage_RDS_candidate("pubmed_tmp", "desc")
 
     #-------------------------------------------------------#
     #                                                       #
@@ -162,21 +158,21 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_SUPP,
 # 5.4 on sépare les données et on les remonte sous PostGre
 
 ## 1 - INIT du schema 
-pstgr_init_schema("pubmed_tmp")
+#pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp", nom_table = "supp")
+#pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp", nom_table = "supp")
 
     
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = PATH_REF_CPT_SUPP, 
-             name_id = "id_supp", 
-             repertoire_in = DIR_OUTPUT_RDS_SUPP, 
-             repertoire_out = "Prod/Output/balises_rds/supp/",
-             nom_schema = "pubmed_tmp", 
-             nom_table = "supp")    
-    
+#balisage_RDS(referentiel = PATH_REF_CPT_SUPP, 
+#             name_id = "id_supp", 
+#             repertoire_in = DIR_OUTPUT_RDS_SUPP, 
+#             repertoire_out = "Prod/Output/balises_rds/supp/",
+#             nom_schema = "pubmed_tmp", 
+#             nom_table = "supp")    
+balisage_RDS_candidate("pubmed_tmp", "supp")    
     
 
     
@@ -207,22 +203,22 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_PA,
 # 6.4 on sépare les données et on les remonte sous PostGre
 
 ## 1 - INIT du schema 
-pstgr_init_schema("pubmed_tmp")
+#pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp",
-                          nom_table = "pa")
+#pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp",
+#                          nom_table = "pa")
 
 
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = PATH_REF_CPT_PA, 
-             name_id = "id_pa", 
-             repertoire_in = DIR_OUTPUT_RDS_PA, 
-             repertoire_out = "Prod/Output/balises_rds/Pa/",
-             nom_schema = "pubmed_tmp", 
-             nom_table = "pa")    
-
+#balisage_RDS(referentiel = PATH_REF_CPT_PA, 
+#             name_id = "id_pa", 
+#             repertoire_in = DIR_OUTPUT_RDS_PA, 
+#             repertoire_out = "Prod/Output/balises_rds/Pa/",
+#             nom_schema = "pubmed_tmp", 
+#             nom_table = "pa")    
+balisage_RDS_candidate("pubmed_tmp", "pa")
 
 
     
@@ -254,22 +250,22 @@ comptage_balise (nom_chemin = DIR_OUTPUT_RDS_QUAL,
 # 7.4 on sépare les données et on les remonte sous PostGre
 
 ## 1 - INIT du schema 
-pstgr_init_schema("pubmed_tmp")
+#pstgr_init_schema("pubmed_tmp")
 
 ## 2 - Creation tables vides 
 # simple / multiple a partir du referentiel 
-pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp",
-                            nom_table = "qual")
+#pstgr_write_table_ref_vide(nom_schema = "pubmed_tmp",
+#                            nom_table = "qual")
 
 
 ## Traitements des fichiers RDS ----
-balisage_RDS(referentiel = PATH_REF_CPT_QUAL, 
-             name_id = "id_qual", 
-             repertoire_in = DIR_OUTPUT_RDS_QUAL, 
-             repertoire_out = "Prod/Output/balises_rds/qual/",
-             nom_schema = "pubmed_tmp", 
-             nom_table = "qual")  
-
+#balisage_RDS(referentiel = PATH_REF_CPT_QUAL, 
+ #            name_id = "id_qual", 
+  #           repertoire_in = DIR_OUTPUT_RDS_QUAL, 
+  #           repertoire_out = "Prod/Output/balises_rds/qual/",
+  #           nom_schema = "pubmed_tmp", 
+  #           nom_table = "qual")  
+balisage_RDS_candidate("pubmed_tmp", "qual")
      
 #-------------------------------------------------------#
 #                                                       #

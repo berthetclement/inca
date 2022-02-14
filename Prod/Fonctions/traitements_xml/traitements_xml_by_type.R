@@ -1,18 +1,40 @@
-## Prend en entrée un type de données parmi supp, qual, pa, desc et un fichier source
-## Renvoie en sortie une liste de .rds 
-## Etape 1 : Récupère la liste des variables définies dans le fichier de paramètres
-## Etape 2 : Supprime les fichiers .xml du répertoire contenant les .xml splittés
-## Etape 3 : Supprime les fichiers .rds du répertoire de sortie 
-## Etape 4 : Splitte le fichier .xml principal en N fichiers splittés
-## Etape 5 : Liste les fichiers du répertoire contenant les .xml splittés
-## Etape 6 : Applique la fonction treat_xml_file() à chaque fichier .xml du répertoire contenant les .xml splittés
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                traitements_xml_by_type                                    #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  # L'objectif de cette fonction est de structurer des donnees d un fichier XML            #
+#  # Traite un type de données parmi supp, qual, desc et pa en écrivant les .rds            #
+#  # correspondant aux .xml. C'est une fonction macro.                                      #
+#  # Le traitement se déroule en 6 étapes :                                                 #
+#  #  Etape 1 : Récupère la liste des variables définies dans le fichier de paramètres      #
+#  #  Etape 2 : Supprime les fichiers .xml du répertoire contenant les .xml splittés        #
+#  #  Etape 3 : Supprime les fichiers .rds du répertoire de sortie                          #
+#  #  Etape 4 : Splitte le fichier .xml principal en N fichiers splittés                    #
+#  #  Etape 5 : Liste les fichiers du répertoire contenant les .xml splittés                #
+#  #  Etape 6 : Applique la fonction treat_xml_file() à chaque fichier .xml du répertoire   #
+#  #           contenant les .xml splittés                                                  #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #  type        : type de fichier : desc, supp, pa, qual                                  #
+#  #  file_input  : nom du fichier source                                                   #
+#  #                                                                                        #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   #   Fichiers RDS (selon la nom max d'enfants fixes par fichier) contenant les donnees   #
+#   #   Structuree a partir du fichier XML                                                  #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
 
 traitements_xml_by_type <- function(type,file_input){
   
-  ## on trace le début du traitement
-  temps <- as.data.frame(Sys.time())
-  write.table(temps,file=paste0(CHEMIN_TPS_TRAITEMENT,paste0('Traitements_fichiers_XML_',str_to_upper(type),'_heure_debut.txt')), col.names = TRUE, row.names = FALSE)
+  # On trace l'heure du début de l'étape  
+  heure_debut <- Sys.time() 
   
   ## ouverture de la log
   journal(paste0("Traitements_fichiers_XML_",str_to_upper(type)),paste0("Traitements_fichiers_XML_",str_to_upper(type)))
@@ -60,12 +82,18 @@ traitements_xml_by_type <- function(type,file_input){
                               }
   )
 
+  ##
+  print(paste0("Fin Traitements_fichiers_XML_",str_to_upper(type)))
+  print("Heure lancement: ")
+  print(as.character(Sys.time()))
+  
   ## on ferme la log
   sink()
   
-  ## on trace la fin du traitement
-  temps <- as.data.frame(Sys.time())
-  write.table(temps,file=paste0(CHEMIN_TPS_TRAITEMENT,paste0('Traitements_fichiers_XML_',str_to_upper(type),'_heure_fin.txt')), col.names = TRUE, row.names = FALSE)
-  
+  # fin timer du programme
+  df_temp <- calcul_temps_trt(fullname_file = paste0(CHEMIN_TPS_TRAITEMENT,FILE_TPS_TRAITEMENT),
+                              label = paste0("Traitements_fichiers_XML_",str_to_upper(type)),
+                              heure_debut = heure_debut
+  )     
   
 }
