@@ -1,4 +1,31 @@
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   write_data_check_to_csv                                 #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #  Cette fonction Ecrit un data frame dt dans un fichier filename situé dans le          #
+#  #  répertoire dir_file                                                                   #                   #
+#  #                                                                                        #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  # dt        : le dataframe a exporter                                                    #
+#  # dir_file  : le répertoire ou l'on veut exporter                                        #
+#  # filename  : le nom du fichier de l'export                                              #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   #  un fichier csv avec les donnees exportees                                            #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
+
+
 ## Ecrit un data frame dt dans un fichier filename situé dans le répertoire dir_file
+
 
 write_data_check_to_csv <- function(dt, dir_file, filename){
   

@@ -110,6 +110,10 @@ comptage_balise <- function(nom_chemin,id_fic,nom_output) {
   
   #### on identifie les nouvelles balises   
   
+  ## on passe cette etape lors de l'init
+  if(file.exists(paste0(CHEMIN_OUTPUT_REF_COMPTAGE,nom_output,".csv"))){
+  
+  
   ## on lit le fichier de référence
   liste_balise_hist <- read.csv2(paste0(CHEMIN_OUTPUT_REF_COMPTAGE,nom_output,".csv"))  
   
@@ -129,7 +133,7 @@ comptage_balise <- function(nom_chemin,id_fic,nom_output) {
   ## on archive l'ancienne version
   file.rename(from = paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_output,".csv"), 
               to = paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_output,"_",format(Sys.time(),"%Y%m%d%H%M%S"),".csv"))
-  
+  }
   ## on exporte la nouvelle
   write.table(res_tot_agg, 
               paste0(CHEMIN_OUTPUT_REF_COMPTAGE,nom_output,".csv"), 

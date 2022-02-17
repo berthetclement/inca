@@ -1,32 +1,45 @@
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   Lancement_tree                                          #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #  Cette fonction lance toute la récupération des tree :                                 #
+#  #    1) lecture du fichier plat                                                          #      
+#  #    2) structuration                                                                    #   
+#  #    3) remontee sous postgre                                                            #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #                                                                              ,         #
+#  # Pas de parametres                                                                      #
+#  #                                                                                        #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   #  Donnees remontees sous Postgre dans la table tree                                    #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
 
-#-------------------------------------------------------#
-#                                                       #
-#       03-Traitements_MESH_TREES.R                     #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#-------------------------------------------------------#
+Lancement_tree <- function() {
 
-
-##
-# Utilisation d'un referentiel (fichier) 
-# Le fichier est present dans le dossier /Input
-##
+# On trace l'heure du début de l'étape  
+heure_debut <- Sys.time() 
 
 # 0 - Creation d'une log 
 journal("03-Traitements_MESH_TREES","03-Traitements_MESH_TREES")
 
 print("***********************************************")
-print("*** Programme : 03-Traitements_MESH_TREES.R ***")
+print("*** Programme :    Traitements_MESH_TREES.R ***")
 print("***********************************************")
 print(as.character(Sys.time()))
 cat("\n")
 
 # 1 - Chargement fichier
-path <- paste0(DIR_INPUT_DATA, nom_fichier_mesh_trees)
+path <- paste0(DIR_INPUT_DATA, NOM_FICHIER_MESH_TRESS)
 fic_mesh_tree <- read.delim(file = path, header = FALSE, dec = ",", sep = ";")
 
 # TO LOG
@@ -89,18 +102,36 @@ print(fic_mesh_tree[1:3,])
 cat("\n")
 
 # EXPORT ----
-write.table(fic_mesh_tree, paste0(chemin_output_trees, "mesh_trees.csv"), sep = ";", row.names = FALSE)
+write.table(fic_mesh_tree, paste0(CHEMIN_OUPUT_TREES, "mesh_trees.csv"), sep = ";", row.names = FALSE)
 
 
 # TO LOG
-path <- paste0(chemin_output_trees, "mesh_trees.csv")
+path <- paste0(CHEMIN_OUPUT_TREES, "mesh_trees.csv")
 if(file.exists(path)){
   text <- paste0("Export du fichier ", path, " : [OK]")
   print(text)
 } 
 
 cat("\n")
-sink()
 
+## remontee des donnees sous postgre
+print(paste0("Remontee des donnees sous postgre: ",Sys.time()))
+RPostgreSQL::dbWriteTable(con, 
+                          name=c("pubmed_tmp", "tree"), 
+                          value = fic_mesh_tree, 
+                          append = FALSE, 
+                          row.names=FALSE)
 
+print(paste0("Fin de l'intégration des données tree: ",Sys.time()))
+
+## on ferme la log
+  sink()
+  
+  # fin timer du programme
+  df_temp <- calcul_temps_trt(fullname_file = paste0(CHEMIN_TPS_TRAITEMENT,FILE_TPS_TRAITEMENT),
+                              label = 'Lancement tree ',
+                              heure_debut = heure_debut
+  ) 
+
+}
 

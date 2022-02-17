@@ -1,3 +1,28 @@
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   load_rds_file_to_db                                     #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  # Cette fonction a pour but de remonter les donnees presentes issues des donnees XML     #
+#  # et structuree dans un fichier RDS dans les tables simple et mult sous postGre          #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #  rds_file   : le fichier RDS issu de l'integration du XML a separer et remonter        #
+#  #  referentiel: referentiel de comptage utilise                                          #
+#  #  nom_schema : nom du schema d'integration des données                                  #
+#  #  nom_table  : nom de la table simple dans laquelle on integre les donnees              #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #   Donnees integrees dans la table simple                                              #
+#   #   Donnees integrees dans la table mult                                                #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
+
 load_rds_file_to_db <- function(rds_file, referentiel, nom_schema, nom_table){
 
   df_rds = readRDS(rds_file)

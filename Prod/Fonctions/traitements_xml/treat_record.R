@@ -1,6 +1,29 @@
-## Traite un enregistrement children_0
-## nom_parent_id et nom_balise_id utilisés pour détecter l'identifiant de l'enregistrement
-## Retourne un data frame / data table avec une colonne id_{data_type} pour identifier l'enregistrement
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                     treat_record                                          #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #  Cette fonction traite un enregistrement donné dans un xml                             #
+#  # nom_parent_idn nom_balise_id utilisés pour détecter l'identifiant de l'enregistrement  #                                                                                     #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  # children_0   : élément d'un .xml                                                       #
+#  #              ==>(un enfant de niveau 0 qui contient les balises d'un enregistrement)   #                                                                                      #
+#  # nom_parent_id : cle utilise pour détecter l'identifiant de l'enregistrement            #
+#  # nom_balise_id : cle utilise pour détecter l'identifiant de l'enregistrement            #
+#  # data_type     : type de données à traiter                                              #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   # un data frame contenant l'ensemble des niveaux de l'enregistrement                    #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
+
 
 treat_record <- function(children_0, nom_parent_id, nom_balise_id, data_type){
   

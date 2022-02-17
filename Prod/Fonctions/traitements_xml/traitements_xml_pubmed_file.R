@@ -1,3 +1,29 @@
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   traitements_xml_pubmed_file                             #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #   Cette fonction traite et structure une publication recuperee en XML                  #
+#  #                                                                                        #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #  file_unique_xml   : traitement d'une publication au format XML                        #
+#  #  id_a_charger      : liste des identifiants a charger                                  #
+#  #  r_search          : objet cree par search API                                         #
+#  #  i_lot             : identifiant du lot traite                                         #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   #  un dataframe avec les donnees XML de la publication extraite structuree              #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
+
+
 ## Apparition de cette fonction qui traite pubmed à la maille "fichier"
 traitements_xml_pubmed_file <- function(file_unique_xml, id_a_charger, r_search, i_lot){
   

@@ -1,16 +1,29 @@
-#-------------------------------------------------------#
-#                                                       #
-#         06-traitements_xml.R                          #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#-------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   traitements_xml_pubmed                                  #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #   Cette fonction traite et structure un lot de publication recupere en XML             #
+#  #                                                                                        #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #  id_a_charger      : liste des identifiants a charger                                  #
+#  #  r_search          : objet cree par search API                                         #
+#  #  full_xml_database : lot de données .xml de type pubmed                                #
+#  #  i_lot             : identifiant du lot traite                                         #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   #  un fichier RDS avec les donnees XML extraite structurees                             #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
 
-# Traitements fichiers xml ----
-  # export au format RDS un data frame contenant l'ensemble des fichiers xml d'un lot
 
 traitements_xml_pubmed <- function(id_a_charger, r_search, full_xml_database, i_lot){
   

@@ -1,16 +1,27 @@
-#-------------------------------------------------------#
-#                                                       #
-#     grant_rights.R                                    #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#-------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   grant_rights                                            #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #  Cette fonction donne les droits de select sur une table                               #
+#  #                                                                                        #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  # nom_schema : nom du schema                                                             #
+#  # nom_table  : nom de la table                                                           #
+#  #                                                                                        #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #  La table sous postrgre avec les droits de select                                     #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
-## Description parameters : 
-# nom_schema : nom du schema en caracteres
-# nom_table : nom de la table en caracteres
 
 grant_rights <- function(nom_schema, nom_table){
   

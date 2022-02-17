@@ -24,15 +24,15 @@
 
 calcul_temps_trt <- function(fullname_file,label,heure_debut) {
   
-  ## en fonction du moment on change le traitement réalisé
-    ## si avant l'étape : on initialise
+   # on cree un dataframe avec les informations necessaires
    df_temp <- data.frame(etape = label,
                          heure_debut = heure_debut,
                          heure_fin = Sys.time()
                         )
-                        
+   # on calcule le temps de traitement                      
    df_temp$duree_min <- difftime(df_temp$heure_fin,df_temp$heure_debut,units = "mins")
    
+   # on enrichit le fichier de suivi (ou on le cree si premier lancement)
    write.table(df_temp,
                 fullname_file,
                 sep = ";",

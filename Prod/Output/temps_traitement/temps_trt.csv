@@ -1,26 +1,43 @@
 "etape";"heure_debut";"heure_fin";"duree_min"
-"Identification des publication restant Ã  charger";2022-02-13 13:20:30;2022-02-13 13:20:33;0.0454192479451497
-"Identification des publication restant Ã  charger";2022-02-13 14:12:10;2022-02-13 14:12:12;0.0449934164683024
-"Identification des publication restant Ã  charger";2022-02-13 16:14:33;2022-02-13 16:14:36;0.0512730995814006
-"Identification des publication restant Ã  charger";2022-02-13 16:15:08;2022-02-13 16:15:11;0.0469024817148844
-"Identification des publication restant Ã  charger";2022-02-13 16:15:52;2022-02-13 16:15:55;0.044960367679596
-"Identification des publication restant Ã  charger";2022-02-13 18:25:35;2022-02-13 18:25:38;0.0498908003171285
-"Identification des publication restant Ã  charger";2022-02-13 18:25:48;2022-02-13 18:25:51;0.0475404500961304
-"Identification des publication restant Ã  charger";2022-02-13 18:28:53;2022-02-13 18:28:56;0.0509742339452108
-"Identification des publication restant Ã  charger";2022-02-13 18:29:16;2022-02-13 18:29:18;0.0471946994463603
-"Identification des publication restant a charger";2022-02-13 18:41:12;2022-02-13 18:41:15;0.0494101166725159
-"Identification des publication restant a charger";2022-02-13 18:42:07;2022-02-13 18:42:10;0.04993683497111
-"Suppression des publication plus a charger";2022-02-13 19:00:39;2022-02-13 19:00:39;0.000133764743804932
-"Suppression des publication plus a charger";2022-02-13 19:17:40;2022-02-13 19:17:40;0.000349966684977214
-"Identification des publication chargees plusieurs fois";2022-02-13 19:19:41;2022-02-13 19:19:41;0.00121005376180013
-"Suppression des publication plus a charger";2022-02-13 19:19:41;2022-02-13 19:19:41;0.000200164318084717
-"Identification des publication restant a charger";2022-02-13 21:06:39;2022-02-13 21:06:42;0.0466284155845642
-"Identification des publication restant a charger";2022-02-13 21:09:06;2022-02-13 21:09:09;0.0513400673866272
-"Identification des publication plus a charger";2022-02-13 21:09:34;2022-02-13 21:09:37;0.0504005829493205
-"Suppression des publication plus a charger";2022-02-13 21:09:40;2022-02-13 21:09:40;0.000133331616719564
-"Fin de la partie qualification des balises cpt_balises_pubmed";2022-02-13 21:32:25;2022-02-13 21:32:32;0.117654184500376
-"Remontee des donnees desc";2022-02-13 21:52:12;2022-02-13 21:52:18;0.103665932019552
-"Remontee des donnees pubmed";2022-02-13 21:52:42;2022-02-13 21:54:04;1.36197138230006
-"Fin de la partie qualification des balises cpt_balises_desc";2022-02-13 22:19:52;2022-02-13 22:19:56;0.0547465165456136
-"Remontee des donnees desc";2022-02-13 22:22:13;2022-02-13 22:22:50;0.612441249688466
-"Traitements_fichiers_XML_SUPP";2022-02-13 22:23:37;2022-02-13 23:32:21;68.7444264332453
+"Lancement pubmed INIT";2022-02-14 23:28:09;2022-02-15 01:15:56;107.793379982313
+"Identification des publication restant a charger";2022-02-15 01:16:00;2022-02-15 01:16:02;0.0454641660054525
+"Lancement pubmed REPRISE";2022-02-15 01:15:56;2022-02-15 02:58:45;102.810205717882
+"Identification des publication restant a charger";2022-02-15 20:35:40;2022-02-15 20:35:43;0.052895466486613
+"Identification des publication restant a charger";2022-02-15 20:35:55;2022-02-15 20:35:58;0.0511717478434245
+"Lancement pubmed REPRISE";2022-02-15 20:35:52;2022-02-15 20:52:51;16.9796029845874
+"Identification des publication plus a charger";2022-02-15 21:48:44;2022-02-15 21:48:47;0.0534460345904032
+"Suppression des publication plus a charger";2022-02-15 21:48:52;2022-02-15 21:48:52;0.00205056667327881
+"Identification des publication chargees plusieurs fois";2022-02-15 21:48:58;2022-02-15 21:48:59;0.0171661655108134
+"Suppression des publication plus a charger";2022-02-15 21:49:05;2022-02-15 21:49:05;0.00208386580149333
+"Qualification des balises cpt_balises_pubmed";2022-02-15 21:49:12;2022-02-15 21:51:06;1.89915748437246
+"Remontee des donnees pubmed";2022-02-15 22:04:26;2022-02-15 22:28:44;24.3016196012497
+"Traitements_fichiers_XML_DESC";2022-02-15 22:30:20;2022-02-15 22:51:07;20.787985265255
+"Qualification des balises cpt_balises_desc";2022-02-15 22:54:32;2022-02-15 22:54:48;0.264074798425039
+"Remontee des donnees desc";2022-02-15 22:56:45;2022-02-15 23:00:04;3.32479173342387
+"Traitements_fichiers_XML_SUPP";2022-02-15 23:05:28;2022-02-16 00:14:06;68.630045235157
+"Qualification des balises cpt_balises_Supp";2022-02-16 10:59:51;2022-02-16 11:01:40;1.81156894763311
+"Remontee des donnees supp";2022-02-16 11:06:51;2022-02-16 11:24:26;17.5894701004028
+"Traitements_fichiers_XML_PA";2022-02-16 11:26:33;2022-02-16 11:26:59;0.431789600849152
+"Qualification des balises cpt_balises_Pa";2022-02-16 11:35:00;2022-02-16 11:35:01;0.00487085183461507
+"Remontee des donnees pa";2022-02-16 11:35:23;2022-02-16 11:35:27;0.0634963512420654
+"Traitements_fichiers_XML_QUAL";2022-02-16 11:37:31;2022-02-16 11:37:33;0.0296855648358663
+"Qualification des balises cpt_balises_qual";2022-02-16 11:37:51;2022-02-16 11:37:51;0.0026416818300883
+"Remontee des donnees qual";2022-02-16 11:55:49;2022-02-16 11:55:50;0.0140551169713338
+"Lancement tree ";2022-02-16 23:25:07;2022-02-16 23:25:08;0.0197964151700338
+"Gestion des schema ";2022-02-16 23:48:59;2022-02-16 23:48:59;0.000582667191823324
+"Lancement pubmed INIT";2022-02-17 00:02:24;2022-02-17 03:27:09;204.752652951082
+"Identification des publication restant a charger";2022-02-17 03:27:12;2022-02-17 03:27:15;0.0487727681795756
+"Lancement pubmed REPRISE";2022-02-17 03:27:09;2022-02-17 06:31:18;184.145885252953
+"Identification des publication restant a charger";2022-02-17 07:22:13;2022-02-17 07:22:16;0.0504169344902039
+"Identification des publication plus a charger";2022-02-17 07:23:22;2022-02-17 07:23:25;0.0543310165405273
+"Suppression des publication plus a charger";2022-02-17 07:23:30;2022-02-17 07:23:30;0.00303331613540649
+"Identification des publication chargees plusieurs fois";2022-02-17 07:23:42;2022-02-17 07:23:43;0.0180842677752177
+"Suppression des publication plus a charger";2022-02-17 07:24:03;2022-02-17 07:24:03;0.00323331753412882
+"Qualification des balises cpt_balises_pubmed";2022-02-17 07:24:08;2022-02-17 07:26:01;1.87502654790878
+"Remontee des donnees pubmed";2022-02-17 07:28:52;2022-02-17 07:54:53;26.0146125833193
+"Traitements_fichiers_XML_DESC";2022-02-17 07:58:56;2022-02-17 08:18:51;19.9097768505414
+"Qualification des balises cpt_balises_desc";2022-02-17 08:18:51;2022-02-17 08:19:06;0.257600450515747
+"Remontee des donnees desc";2022-02-17 08:19:06;2022-02-17 08:22:19;3.20929166475932
+"Qualification des balises cpt_balises_pubmed";2022-02-17 14:01:07;2022-02-17 14:03:02;1.92003558476766
+"Qualification des balises cpt_balises_pubmed";2022-02-17 14:04:03;2022-02-17 14:05:58;1.91448624928792
+"Qualification des balises cpt_balises_pubmed";2022-02-17 14:09:37;2022-02-17 14:11:32;1.91880929867427

@@ -1,15 +1,27 @@
-#-------------------------------------------------------#
-#                                                       #
-#     initialize_df_table_simple_mult.R                 #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#-------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   initialize_df_table_simple_mult                         #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  # Cette fonction a pour vocation a creer un dataframe vide a partir d'une liste          #
+#  # de colonnes predefinies                                                                #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  # list_columns : la liste des colonnes                                                   #
+#  #                                                                                        #
+#  #                                                                                        #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #   Un dataframe vide avec les colonnes demandees                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
-## Description parameters : 
-# list_columns : liste de colonnes du data frame à initialiser
 
 initialize_df_table_simple_mult <- function(list_columns){
 

@@ -1,6 +1,0 @@
-[1] "Lancement de la partie remontee des donnees desc :2022-02-13 21:52:12"
-[1] "Initialisation du schema :2022-02-13 21:52:12"
-[1] "Initialisation des tables :2022-02-13 21:52:12"
-[1] "Separation des donneees et remontee sous PostGre:2022-02-13 21:52:12"
-[1] "Chargement de :  ./Prod/Output/desc_rds/DESC_20220210032408.RDS"
-[1] "Fin de la partie remontee des donnees desc :2022-02-13 21:52:18"

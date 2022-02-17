@@ -1,16 +1,28 @@
-#-------------------------------------------------------#
-#                                                       #
-#                 split_rds.R                           #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#                                                       #
-#-------------------------------------------------------#
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   split_rds                                               #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #  Cette fonction va extraire depuis un fichier RDS avec les données XML la partie       #
+#  #  balise simple ou bien la partie balise multiple                                       #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #  obj_rds      : le data.frame issu du RDS a travailler                                 #
+#  #  simple_table : FALSE : on s'occupe des balises multiples, TRUE : des balises simples  #
+#  #  name_id      : identifiant des donnees : id_pumed, id_desc, id_supp, id_qual, id_pa   #
+#  #  referentiel  : referentiel de comptage utilise                                        #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #   le data.frame des donnees simple ou mult issu du fichier en entree selon le choix   #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
-###
-## Application des regles de gestion par fichier RDS
-###
 
 split_rds <- function(obj_rds, simple_table= FALSE, name_id, referentiel){
   ##

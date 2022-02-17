@@ -1,4 +1,25 @@
-## Traite un niveau d'arboresence du .xml pour un enregistrement donné
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   traitements_xml_pubmed_file                             #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  #   Cette fonction Traite un niveau d'arboresence du .xml pour un enregistrement donné   #
+#  #                                                                                        #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #  level_child      : niveau de l'arborescence à traiter                                 #
+#  #  nb_cols_expected : nombre de colonnes attendues pour matcher avec le data frame final # 
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   #  un data frame contenant les informations d'un niveau de l'arborescence               #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 
 
 treat_level_child <- function(level_child, nb_cols_expected){

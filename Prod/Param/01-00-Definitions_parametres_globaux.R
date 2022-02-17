@@ -34,19 +34,21 @@ library("RPostgreSQL")
 ##
 
 # chemin LOG ----
-chemin_log <- "Prod/Log/"
+#chemin_log <- "Prod/Log/"
+CHEMIN_LOG <- "Prod/Log/"
 
 # chemin fonctions ----
-chemin_fonctions <- "Prod/Fonctions/"
+#chemin_fonctions <- "Prod/Fonctions/"
+CHEMIN_FONCTIONS <- "Prod/Fonctions/"
 
 # pour chargement des fonctions en memoire
 file_sources = list.files(pattern="*\\.R", 
-                          path = chemin_fonctions, 
+                          path = CHEMIN_FONCTIONS, 
                           full.names = TRUE, 
                           recursive = TRUE)
 
 #  chemin OUTPUT  ----
-chemin_output <- "Prod/Output/"
+#chemin_output <- "Prod/Output/"
 DIR_OUTPUT = "./Prod/Output/"
 
 
@@ -55,18 +57,18 @@ DIR_OUTPUT_SUIVI = DIR_OUTPUT
 
 
 # chemin temps traitement ----
-chemin_tps_traitment <- paste0(DIR_OUTPUT, "temps_traitement/")
+#chemin_tps_traitment <- paste0(DIR_OUTPUT, "temps_traitement/")
 CHEMIN_TPS_TRAITEMENT <- paste0(DIR_OUTPUT, "temps_traitement/")
 FILE_TPS_TRAITEMENT <- "temps_trt.csv"
 
 # chemin INPUT ----
 DIR_INPUT_DATA = "./Prod/Input/"
 #  chemin scripts ----
-chemin_script <- "Prod/Script/"
+#chemin_script <- "Prod/Script/"
 
 # chemin refs comptage balises ----
-#chemin_output_ref_comptage <- paste0(DIR_OUTPUT, "ref_comptage/")
 CHEMIN_OUTPUT_REF_COMPTAGE <- paste0(DIR_OUTPUT, "ref_comptage/")
+
 #-------------------------------------------------------#
 #                                                       #
 #                    PUBMED                             #
@@ -96,10 +98,10 @@ step_by_id = 499# 999
 
 # BALISES ----
 
-chemin_fonctions_balises <-  paste0(chemin_fonctions, "balises/")
-
-# pour chargement des fonctions en memoire
-fonctions_source_balises = list.files(pattern="*\\.R", path = chemin_fonctions_balises, full.names = TRUE)
+# chemin_fonctions_balises <-  paste0(chemin_fonctions, "balises/")
+# 
+# # pour chargement des fonctions en memoire
+# fonctions_source_balises = list.files(pattern="*\\.R", path = chemin_fonctions_balises, full.names = TRUE)
 
 # chemin output balises RDS
 chemin_output_balises <- paste0(DIR_OUTPUT, "balises_rds/")
@@ -109,6 +111,18 @@ tx_balise_NS <- 0.001
 
 ## on définit la liste des balises erronnées
 liste_balises_erronnees <- c("b","i","sub","sup","u","math","mi","mn","mo","mrow","msub","mspace","mtext")
+
+## regroupement des types de balises en liste
+
+LST_SIMPLE_DATE_BDD_DATE = c("simple_date")
+LST_SIMPLE_DATE_BDD_CHARACTER = c("simple_PubDate")
+LST_SIMPLE_TAG = c("simple_chemin")
+LST_ERRONEE = c("simple_erronnee", "multiple_erronnee")
+LST_MULT = c("multiple","simple_non_significative") 
+LST_SIMPLE_CALC = c("balises_error")
+LST_COLS_MULT = c("Nom_balise", "Parent", "Chemin", "Profondeur", "Valeur", "Attribut")
+
+
 
 ##
 # DECOUPAGE FICHIER XML
@@ -130,8 +144,9 @@ BLOCK_SIZE <- 1000
   DIR_OUTPUT_RDS_DESC = paste0(DIR_OUTPUT, "desc_rds/")
   FILE_SUIVI_DESC = "suivi_desc.csv"
   FILE_INPUT_DESC = "desc2022.xml"
-  nom_ref_cpt_desc <- "cpt_balises_desc"
-  PATH_REF_CPT_DESC <- paste0(CHEMIN_OUTPUT_REF_COMPTAGE, nom_ref_cpt_desc, '.csv')
+  #nom_ref_cpt_desc <- "cpt_balises_desc"
+  NOM_REF_CPT_DESC <- "cpt_balises_desc"
+  PATH_REF_CPT_DESC <- paste0(CHEMIN_OUTPUT_REF_COMPTAGE, NOM_REF_CPT_DESC, '.csv')
   
     
  
@@ -193,11 +208,13 @@ BLOCK_SIZE <- 1000
 #                                                       #
 #-------------------------------------------------------#
 
-# MESH TREES ----
-nom_fichier_mesh_trees <- "mtrees2022.bin"
 
-# chemin output mesh trees ----
-chemin_output_trees <- paste0(DIR_OUTPUT, "mesh_trees/")
+  #nom_fichier_mesh_trees <- "mtrees2022.bin"
+  NOM_FICHIER_MESH_TREES <- "mtrees2022.bin" 
+
+  # chemin output mesh trees ----
+  #chemin_output_trees <- paste0(DIR_OUTPUT, "mesh_trees/")
+  CHEMIN_OUPUT_TREES <- paste0(DIR_OUTPUT, "mesh_trees/")
 
 
 
@@ -218,10 +235,4 @@ con <- dbConnect(drv_generic, config$conn, port=config$port, user=config$user, p
 
 
 
-LST_SIMPLE_DATE_BDD_DATE = c("simple_date")
-LST_SIMPLE_DATE_BDD_CHARACTER = c("simple_PubDate")
-LST_SIMPLE_TAG = c("simple_chemin")
-LST_ERRONEE = c("simple_erronnee", "multiple_erronnee")
-LST_MULT = c("multiple","simple_non_significative") 
-LST_SIMPLE_CALC = c("balises_error")
-LST_COLS_MULT = c("Nom_balise", "Parent", "Chemin", "Profondeur", "Valeur", "Attribut")
+

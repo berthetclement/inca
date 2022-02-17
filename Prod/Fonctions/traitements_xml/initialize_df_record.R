@@ -1,3 +1,27 @@
+#-------------------------------------------------------------------------------------------#
+#                                                                                           #
+#                                   initialize_df_record                                    #
+#                                                                                           #
+#                                                                                           #
+## Objectif :                                                                               #
+#  # Cette fonction Initialise un data frame vide avec 6 colonnes                           #
+#  #  Nom_balise, Parent, Chemin, Profondeur, Valeur, Attribut                              #                                                         #
+#  #                                                                                        #      
+#  #                                                                                        #
+#                                                                                           #
+## Parametres en entrees :                                                                  #
+#  #                                                                                        #
+#  # pas de parametre                                                                       #
+#  #                                                                                        #
+#                                                                                           #
+## En sortie :                                                                              #
+#   #                                                                                       #
+#   #  un data.frame vide                                                                   #
+#   #                                                                                       #
+#   #                                                                                       #
+#   #                                                                                       #
+#                                                                                           #
+#-------------------------------------------------------------------------------------------#
 ## Initialise un data frame vide avec 6 colonnes Nom_balise, Parent, Chemin, Profondeur, Valeur, Attribut
 
 
