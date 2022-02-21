@@ -31,7 +31,6 @@ identification_id_plus_present <- function() {
   print(paste0("Lancement de la recuperation des id de publication n'etant plus a charger: ",Sys.time()))
   
   
-  
   ## liste des id charges
   suivi_id_fetch <- read.csv2(paste0(DIR_OUTPUT, FILE_SUIVI_PUBMED))
   id_integres <- suivi_id_fetch %>%  
@@ -40,7 +39,7 @@ identification_id_plus_present <- function() {
   
   ## liste des id à charger
   r_search <- searchAPI(base_name= "pubmed", 
-                        search_term= "(ClinicalTrials.gov[Secondary Source ID])",
+                        search_term= REQUETE_NCT_PUBLI,
                         opt_history= TRUE)
   ## liste des id en écart
   id_plus_present <- id_integres[id_integres$recherche_id %!in% r_search$ids,]
@@ -50,6 +49,8 @@ identification_id_plus_present <- function() {
         
   print(paste0("Fin de lancement de la récupération des id de publication restant a charger: ",Sys.time()))
   
+  ##
+
   
   # fin timer du programme
   df_temp <- calcul_temps_trt(fullname_file = paste0(CHEMIN_TPS_TRAITEMENT,FILE_TPS_TRAITEMENT),

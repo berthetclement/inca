@@ -4,7 +4,7 @@
 #                                                                                           #
 #                                                                                           #
 ## Objectif :                                                                               #
-#  # Cette fonction a vocation a teste la qualite des donnees PUBMED integrees dans un lot  #
+#  # Cette fonction a vocation a tester la qualite des donnees PUBMED integrees dans un lot #
 #  #                                                                                        #      
 #  #                                                                                        #
 #                                                                                           #
@@ -51,16 +51,4 @@ check_xml <- function(data_lot,  i_lot){
   return(res_test)
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 

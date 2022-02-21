@@ -4,9 +4,9 @@
 #                                                                                           #
 #                                                                                           #
 ## Objectif :                                                                               #
-#  #  Cette fonction a pour vocation de supprimer l'ensemble des idpubmed qui sont chargees #
+#  #  Cette fonction a pour vocation de supprimer l'ensemble des idpubmed qui sont charges  #
 #  #  plusieurs fois. Elle se base sur le vecteur liste_doublons créer précemment et sur le #      
-#  #  le fichier de suivi pour trouver les .RDS à épurer. On ne garde que la derniere       #
+#  #  fichier de suivi pour trouver les .RDS à épurer. On ne garde que la derniere          #
 #  #  integration.                                                                          #
 #                                                                                           #
 ## Parametres en entrees :                                                                  #
@@ -33,8 +33,6 @@ suppression_en_doublons <- function() {
   journal("Suppression_publications_en_doublons_","Suppression_publications_en_doublons_")
   
   print(paste0("Lancement de la suppression des publications qui ne sont charges plusieurs fois: ",Sys.time()))
-  
-  
   
   
   ## liste des id charges

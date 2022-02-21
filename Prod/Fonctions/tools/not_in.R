@@ -11,12 +11,12 @@
 #                                                                                           #
 ## Parametres en entrees :                                                                  #
 #  #                                                                                        #
-#  #   un vecteur d'element                                                                 #
+#  #   un vecteur d'elements                                                                #
 #  #                                                                                        #
 #                                                                                           #
 ## En sortie :                                                                              #
 #   #                                                                                       #
-#   #  un vecteur d'element                                                                 #
+#   #  un vecteur d'elements                                                                #
 #   #                                                                                       #
 #   #                                                                                       #
 #   #                                                                                       #

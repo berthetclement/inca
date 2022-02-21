@@ -5,7 +5,7 @@
 #                                                                                           #
 ## Objectif :                                                                               #
 #  #  Cette fonction a pour vocation de récupérer l'ensemble des idpubmed qui ont été       #
-#  #  charges  plusieurs fois. Dans ce cas on garde la derniere intégration.                #      
+#  #  charges plusieurs fois. Dans ce cas on garde la derniere intégration.                 #      
 #  #  Cas apparu lors d'un pb du package rentrez qui a ete ajuste mais on garde le test     #
 #                                                                                           #
 ## Parametres en entrees :                                                                  #

@@ -6,7 +6,7 @@
 ## Objectif :                                                                               #
 #  #  Cette fonction a pour vocation a creer la structure vide des tables simples et mult.  #
 #  #  Elle s'appuie sur le fichier de comptage qui precise les balises simples et multiples.#      
-#  #  Le champs dates normalisees sont definis a un format date dans la BDD                 #
+#  #  Les champs dates normalises sont definis a un format date dans la BDD                 #
 #                                                                                           #
 ## Parametres en entrees :                                                                  #
 #  #  nom_schema : nom du schema cible                                                      #

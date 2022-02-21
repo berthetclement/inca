@@ -16,8 +16,8 @@
 #                                                                                           #
 ## En sortie :                                                                              #
 #   #                                                                                       #
-#   #                                                                                       #
-#   #                                                                                       #
+#   # Les fichiers RDS avec les donnees XML structurees                                     #
+#   # Le fichier de suivi de l'integration                                                  #
 #   #                                                                                       #
 #   #                                                                                       #
 #                                                                                           #
@@ -47,7 +47,7 @@ Lancement_PUBMED <- function(stop_index_id=999999,reprise=FALSE) {
    
   # 1 - search id pubmed with NCT 
   r_search <- searchAPI(base_name= "pubmed", 
-                        search_term= "(ClinicalTrials.gov[Secondary Source ID])",
+                        search_term= REQUETE_NCT_PUBLI,
                         opt_history= TRUE)
   
   saveRDS(r_search,paste0(DIR_OUTPUT_SUIVI,"VERIFICATION/r_search",format(Sys.time(),"%Y%m%d%H%M%S"),".RDS"))
@@ -85,7 +85,7 @@ Lancement_PUBMED <- function(stop_index_id=999999,reprise=FALSE) {
                        r_search=r_search,
                        pos_id_start= 1, 
                        pos_id_end= stop_index_id, 
-                       by_nb_id= step_by_id)
+                       by_nb_id= STEP_BY_ID)
   
 
 

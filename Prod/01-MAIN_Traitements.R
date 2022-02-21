@@ -20,7 +20,7 @@
 source("Prod/Param/01-00-Definitions_parametres_globaux.R")
 
 # 2 - Chargement des fonctions externes ----
-sapply(file_sources,source)
+sapply(FILE_SOURCES,source)
 
 
 #-------------------------------------------------------#
@@ -64,7 +64,7 @@ sapply(file_sources,source)
   # 3.3 on sort les informations pour identifier les balises simples ou à retravailler
     comptage_balise (nom_chemin = DIR_OUTPUT_RDS_PUBMED,
                      id_fic =  "id_pubmed",
-                     nom_output = "cpt_balises_pubmed")
+                     nom_output = NOM_REF_CPT_PUBMED)
   # 3.4 on separe les données et on les remonte sous PostGre
     
     balisage_RDS("pubmed_tmp", "pubmed")
@@ -83,13 +83,17 @@ sapply(file_sources,source)
 
   traitements_xml_by_type("desc",FILE_INPUT_DESC)
 
-# 4.2 on vérifie si on a bien intégrer tous les mesh
-# à écrire
+# 4.2 on vérifie si on a bien intégre tous les desc
+    
+  test_integration_all_record (dir_input = DIR_INPUT_DATA,
+                               file_input = FILE_INPUT_DESC,
+                               file_suivi = FILE_SUIVI_DESC,
+                               liste_test = LST_TEST_DESC)
     
 # 4.3 on sort les informations pour identifier les balises simples ou à retravailler
   comptage_balise (nom_chemin = DIR_OUTPUT_RDS_DESC,
                    id_fic = "id_desc",
-                   nom_output = "cpt_balises_desc")
+                   nom_output = NOM_REF_CPT_DESC)
 
 
 # 4.4 on sépare les données et on les remonte sous PostGre
@@ -110,16 +114,19 @@ sapply(file_sources,source)
 
     
   traitements_xml_by_type("supp", FILE_INPUT_SUPP)
-    
-
+  
 
 # 5.2 on vérifie si on a bien intégrer tous les mesh
-# à écrire
+  
+  test_integration_all_record (dir_input = DIR_INPUT_DATA,
+                               file_input = FILE_INPUT_SUPP,
+                               file_suivi = FILE_SUIVI_SUPP,
+                               liste_test = LST_TEST_SUPP)
     
 # 5.3 on sort les informations pour identifier les balises simples ou à retravailler
   comptage_balise (nom_chemin = DIR_OUTPUT_RDS_SUPP,
                    id_fic = "id_supp",
-                   nom_output = "cpt_balises_Supp")
+                   nom_output = NOM_REF_CPT_SUPP)
     
 # 5.4 on sépare les données et on les remonte sous PostGre
    
@@ -142,12 +149,15 @@ sapply(file_sources,source)
   traitements_xml_by_type("pa",FILE_INPUT_PA)
     
 # 6.2 on vérifie si on a bien intégrer tous les mesh
-# à écrire
+  test_integration_all_record (dir_input = DIR_INPUT_DATA,
+                               file_input = FILE_INPUT_PA,
+                               file_suivi = FILE_SUIVI_PA,
+                               liste_test = LST_TEST_PA)
     
 # 6.3 on sort les informations pour identifier les balises simples ou à retravailler
   comptage_balise (nom_chemin = DIR_OUTPUT_RDS_PA,
                    id_fic = "id_pa",                     
-                   nom_output = "cpt_balises_Pa")
+                   nom_output = NOM_REF_CPT_PA)
 
 # 6.4 on sépare les données et on les remonte sous PostGre
 
@@ -171,12 +181,15 @@ sapply(file_sources,source)
     
 
 # 7.2 on vérifie si on a bien intégrer tous les mesh
-# à écrire
+  test_integration_all_record (dir_input = DIR_INPUT_DATA,
+                               file_input = FILE_INPUT_QUAL,
+                               file_suivi = FILE_SUIVI_QUAL,
+                               liste_test = LST_TEST_QUAL)
     
 # 7.3 on sort les informations pour identifier les balises simples ou à retravailler
   comptage_balise (nom_chemin = DIR_OUTPUT_RDS_QUAL,
                    id_fic = "id_qual",
-                   nom_output = "cpt_balises_qual")
+                   nom_output = NOM_REF_CPT_QUAL)
     
     
 # 7.4 on sépare les données et on les remonte sous PostGre

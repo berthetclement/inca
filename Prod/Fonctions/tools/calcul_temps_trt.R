@@ -9,9 +9,9 @@
 #  # Puis on execute la fonction après le traitement                                        #
 #                                                                                           #
 ## Paramtres en entrees :                                                                   #
-#  # fullname_file : chemin complet du fichier qui compliera tous les tps de traitements    #
+#  # fullname_file : chemin complet du fichier qui compilera tous les tps de traitements    #
 #  # label         : le nom de l'étape                                                      #
-#  # heure_debut   : date_yime du début du traitement                                       #
+#  # heure_debut   : date_time du début du traitement                                       #
 #                                                                                           #
 ## En sortie :                                                                              #
 #   # # un dataframe  avec 4 colonnes (label, heure de début, heure de fin, durée en mn)    #

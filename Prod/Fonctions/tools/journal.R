@@ -22,10 +22,6 @@
 #                                                                                           #
 #-------------------------------------------------------------------------------------------#
 
-# print de la sortie console vers un fichier log
-
-
-
 # Creation LOG ----
 journal <- function(nom_connexion,nom_programme) {
   

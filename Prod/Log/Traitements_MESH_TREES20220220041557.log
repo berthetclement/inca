@@ -1,0 +1,23 @@
+[1] "***********************************************"
+[1] "*** Programme :    Traitements_MESH_TREES.R ***"
+[1] "***********************************************"
+[1] "2022-02-20 04:15:57"
+
+[1] "Chargement du fichier ./Prod/Input/mtrees2022.bin : [OK]"
+
+[1] "Aperçu fichier mesh_trees: "
+                 name tree_code Niveau_1 Niveau_2 Niveau_3 Niveau_4
+1 All MeSH Categories         0        0                           
+2             Anatomy         A        A                           
+3        Body Regions       A01      A01                           
+  Niveau_5 Niveau_6 Niveau_7 Niveau_8 Niveau_9 Niveau_10 Niveau_11
+1                                                                 
+2                                                                 
+3                                                                 
+  Niveau_12 Niveau_13
+1                    
+2                    
+3                    
+
+[1] "Remontee des donnees sous postgre: 2022-02-20 04:15:57"
+[1] "Fin de l'intégration des données tree: 2022-02-20 04:15:57"

@@ -4,7 +4,7 @@
 #                                                                                           #
 #                                                                                           #
 ## Objectif :                                                                               #
-#  # Cette fonction a pour vocation a tester la necessiter de travailler une publication    #
+#  # Cette fonction a pour vocation a tester la necessité de travailler une publication     #
 #  #  presente dans un XML. Elle intervient en cas de reprise                               #      
 #  #                                                                                        #
 #                                                                                           #
@@ -22,8 +22,6 @@
 #                                                                                           #
 #-------------------------------------------------------------------------------------------#
 
-
-##test d'import de la publication
 
 test_reprise_necessaire <- function (id_a_charger,file_unique_xml) {
   ## on se positionne au niveau PubmedArticle

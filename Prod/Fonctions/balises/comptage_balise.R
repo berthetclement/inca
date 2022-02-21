@@ -93,20 +93,20 @@ comptage_balise <- function(nom_chemin,id_fic,nom_output) {
   
   ## les balise non significatives
   res_tot_agg[(res_tot_agg$min == 1 & res_tot_agg$max == 1) 
-              & res_tot_agg$nb_tot_agg < nb_element * tx_balise_NS,]$type_balise <- "simple_non_significative"
+              & res_tot_agg$nb_tot_agg < nb_element * TX_BALISE_NS,]$type_balise <- "simple_non_significative"
   
   ## les balises erronnées  
   res_tot_agg[(res_tot_agg$min == 1 & res_tot_agg$max == 1) 
-              & (res_tot_agg$Parent %in% liste_balises_erronnees 
-                 | res_tot_agg$Nom_balise %in% liste_balises_erronnees),]$type_balise <- "simple_erronnee"
+              & (res_tot_agg$Parent %in% LISTE_BALISE_ERRONNEES 
+                 | res_tot_agg$Nom_balise %in% LISTE_BALISE_ERRONNEES),]$type_balise <- "simple_erronnee"
   
   ## les balises multiples 
   ## on initialise à balise multiple
   res_tot_agg[!(res_tot_agg$min == 1 & res_tot_agg$max == 1),]$type_balise <- "multiple"
   ## les balises erronnées  
   res_tot_agg[!(res_tot_agg$min == 1 & res_tot_agg$max == 1) 
-              & (res_tot_agg$Parent %in% liste_balises_erronnees 
-                 | res_tot_agg$Nom_balise %in% liste_balises_erronnees),]$type_balise <- "multiple_erronnee"
+              & (res_tot_agg$Parent %in% LISTE_BALISE_ERRONNEES 
+                 | res_tot_agg$Nom_balise %in% LISTE_BALISE_ERRONNEES),]$type_balise <- "multiple_erronnee"
   
   #### on identifie les nouvelles balises   
   

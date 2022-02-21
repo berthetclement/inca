@@ -4,7 +4,7 @@
 #                                                                                           #
 #                                                                                           #
 ## Objectif :                                                                               #
-#  #  Cette fonction Ecrit un data frame dt dans un fichier filename situé dans le          #
+#  #  Cette fonction ecrit un data frame dt dans un fichier filename situé dans le          #
 #  #  répertoire dir_file                                                                   #                   #
 #  #                                                                                        #      
 #  #                                                                                        #
@@ -22,9 +22,6 @@
 #   #                                                                                       #
 #                                                                                           #
 #-------------------------------------------------------------------------------------------#
-
-
-## Ecrit un data frame dt dans un fichier filename situé dans le répertoire dir_file
 
 
 write_data_check_to_csv <- function(dt, dir_file, filename){

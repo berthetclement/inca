@@ -101,19 +101,6 @@ print("Aperçu fichier mesh_trees: ")
 print(fic_mesh_tree[1:3,])
 cat("\n")
 
-# EXPORT ----
-write.table(fic_mesh_tree, paste0(CHEMIN_OUPUT_TREES, "mesh_trees.csv"), sep = ";", row.names = FALSE)
-
-
-# TO LOG
-path <- paste0(CHEMIN_OUPUT_TREES, "mesh_trees.csv")
-if(file.exists(path)){
-  text <- paste0("Export du fichier ", path, " : [OK]")
-  print(text)
-} 
-
-cat("\n")
-
 ## remontee des donnees sous postgre
 print(paste0("Remontee des donnees sous postgre: ",Sys.time()))
 RPostgreSQL::dbWriteTable(con, 

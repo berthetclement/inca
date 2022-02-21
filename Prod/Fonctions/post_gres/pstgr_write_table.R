@@ -14,7 +14,7 @@
 #  # data_rds   : donnees a remonter                                                        #
 #                                                                                           #
 ## En sortie :                                                                              #
-#   # la table postegre enrichit                                                            #
+#   # la table postegre enrichie                                                            #
 #   #                                                                                       #
 #   #                                                                                       #
 #   #                                                                                       #

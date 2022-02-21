@@ -5,8 +5,8 @@
 #                                                                                           #
 ## Objectif :                                                                               #
 #  #  Cette fonction gere la partie gestion des schemas :                                   #
-#  #    1) On vide pubmed_arch                                                              #      
-#  #    2) on renome pubmed en pubmed_arch                                                  #   
+#  #    1) On vide pubmed_arch  (s'il existe)                                               #      
+#  #    2) on renome pubmed en pubmed_arch  (s'il existe)                                   #   
 #  #    3) on renomme pubmed_tmp en pubmed                                                  #
 #                                                                                           #
 ## Parametres en entrees :                                                                  #

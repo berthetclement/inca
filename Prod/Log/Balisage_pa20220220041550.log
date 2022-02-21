@@ -1,0 +1,6 @@
+[1] "Lancement de la partie remontee des donnees pa :2022-02-20 04:15:50"
+[1] "Initialisation du schema :2022-02-20 04:15:50"
+[1] "Initialisation des tables :2022-02-20 04:15:50"
+[1] "Separation des donneees et remontee sous PostGre:2022-02-20 04:15:51"
+[1] "Chargement de :  ./Prod/Output/pa_rds/PA_20220220041550.RDS"
+[1] "Fin de la partie remontee des donnees pa :2022-02-20 04:15:54"

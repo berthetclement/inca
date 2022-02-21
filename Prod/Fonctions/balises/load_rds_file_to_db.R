@@ -5,7 +5,7 @@
 #                                                                                           #
 ## Objectif :                                                                               #
 #  # Cette fonction a pour but de remonter les donnees presentes issues des donnees XML     #
-#  # et structuree dans un fichier RDS dans les tables simple et mult sous postGre          #      
+#  # et structurees dans un fichier RDS dans les tables simple et mult sous postGre         #      
 #  #                                                                                        #
 #                                                                                           #
 ## Parametres en entrees :                                                                  #
@@ -38,7 +38,8 @@ load_rds_file_to_db <- function(rds_file, referentiel, nom_schema, nom_table){
   fic_rds_multiples = split_rds(obj_rds = df_rds, 
                                  name_id = id_ref, 
                                  referentiel = referentiel)
-      
+  
+  ## insertion dans les tables postgre    
   pstgr_write_table(nom_schema = nom_schema, nom_table = nom_table, data_rds = fic_rds_simples)
   pstgr_write_table(nom_schema = nom_schema, nom_table = paste(nom_table, "mult", sep = "_"), data_rds = fic_rds_multiples)
 }
