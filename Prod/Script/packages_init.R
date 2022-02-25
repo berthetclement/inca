@@ -16,7 +16,7 @@
   # ne pas executer sur machine cliente
 
 # # liste des packages identifies pour le projet
-# list_pckg <- c("rentrez", "XML", "xml2", "data.table", "dplyr", "tidyr", "stringr", "odbc", "DBI", "RPostgreSQL")
+# list_pckg <- c("rentrez", "XML", "xml2", "data.table", "dplyr", "tidyr", "stringr", "odbc", "DBI", "RPostgreSQL","lubridate")
 # 
 # # liste les packages installes sur la machine
 # inst_pckg <- as.data.frame(installed.packages())
