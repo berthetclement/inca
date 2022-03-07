@@ -41,6 +41,8 @@ test_integration_all_record <- function (dir_input,file_input,file_suivi,liste_t
 
   ## on lit le fichier de suivi
   fic_suivi <- read.csv2(paste0(DIR_OUTPUT,file_suivi))
+  nb_integres <- fic_suivi %>%  summarise(nb = n())
+  
   
   ## on filtre sur les lignes bien integrees
   for (i in (1:length(liste_test))) {
@@ -49,14 +51,15 @@ test_integration_all_record <- function (dir_input,file_input,file_suivi,liste_t
   }
   
   ## on compte le nombre de lignes bien integrees
-  nb_integres <- fic_suivi %>%  summarise(nb = n())
- 
+  nb_integres_OK <- fic_suivi %>%  summarise(nb = n())
+
+  
   ## on test
   test = (nb_records == nb_integres)
   
   ##
   if (test == TRUE) {
-  print(paste0( "Toutes les données ",file_input," sont integrees "))
+  print(paste0( "Toutes les données ",file_input," sont integrees dont ",nb_integres_OK," avec les tests valides sur ",nb_integres))
   } else
   {  print(paste0( "ATTENTION toutes les données ",file_input," ne sont pas integrees :",nb_integres," VS ",nb_records))}
   

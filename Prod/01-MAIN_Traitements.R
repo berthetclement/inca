@@ -172,7 +172,7 @@ sapply(FILE_SOURCES,source)
     #-------------------------------------------------------#
     
     
-# 7 - Traitements fichiers XML PA (referentiel) ----
+# 7 - Traitements fichiers XML QUAL (referentiel) ----
     
     
 # # 7.1 on charge l'ensemble des fichiers QUAL (par paquet définit dans les paramètres)

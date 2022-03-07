@@ -78,7 +78,6 @@
 
 ## INIT CONNEXION
 # parametres de connexion
-#chemin_configuration <- "Prod/Config/"
   CHEMIN_CONFIGURATION <- "Prod/Config/"
   config <- read.table(file = paste0(CHEMIN_CONFIGURATION,"config.txt"), sep = ";", header = TRUE, stringsAsFactors = FALSE)
   drv_generic <- dbDriver("PostgreSQL")
